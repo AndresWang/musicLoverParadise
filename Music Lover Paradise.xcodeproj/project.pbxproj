@@ -15,6 +15,7 @@
 		09C06E862064CC1900C34DC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */; };
 		09C06E912064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E902064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift */; };
 		09C06E9C2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E9B2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift */; };
+		09C06EAA2065067A00C34DC9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EA92065067A00C34DC9 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		09C06E972064CC1900C34DC9 /* Music Lover ParadiseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Music Lover ParadiseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E9B2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_Lover_ParadiseUITests.swift; sourceTree = "<group>"; };
 		09C06E9D2064CC1900C34DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09C06EA92065067A00C34DC9 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				09C06E782064CC1900C34DC9 /* AppDelegate.swift */,
+				09C06EA92065067A00C34DC9 /* SearchResult.swift */,
 				09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */,
 				09C06E7C2064CC1900C34DC9 /* Main.storyboard */,
 				09C06E822064CC1900C34DC9 /* Assets.xcassets */,
@@ -264,6 +267,7 @@
 			files = (
 				09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */,
 				09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */,
+				09C06EAA2065067A00C34DC9 /* SearchResult.swift in Sources */,
 				09C06E812064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
