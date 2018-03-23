@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E782064CC1900C34DC9 /* AppDelegate.swift */; };
-		09C06E7B2064CC1900C34DC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* ViewController.swift */; };
+		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
 		09C06E812064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7F2064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld */; };
 		09C06E832064CC1900C34DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E822064CC1900C34DC9 /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		09C06E752064CC1900C34DC9 /* Music Lover Paradise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lover Paradise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E782064CC1900C34DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		09C06E7A2064CC1900C34DC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		09C06E7D2064CC1900C34DC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		09C06E802064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Music_Lover_Paradise.xcdatamodel; sourceTree = "<group>"; };
 		09C06E822064CC1900C34DC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				09C06E782064CC1900C34DC9 /* AppDelegate.swift */,
-				09C06E7A2064CC1900C34DC9 /* ViewController.swift */,
+				09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */,
 				09C06E7C2064CC1900C34DC9 /* Main.storyboard */,
 				09C06E822064CC1900C34DC9 /* Assets.xcassets */,
 				09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */,
@@ -262,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09C06E7B2064CC1900C34DC9 /* ViewController.swift in Sources */,
+				09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */,
 				09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */,
 				09C06E812064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld in Sources */,
 			);
