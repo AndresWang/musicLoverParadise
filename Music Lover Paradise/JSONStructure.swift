@@ -1,5 +1,5 @@
 //
-//  JSONStructure.swift
+//  JSON Structure.swift
 //  Music Lover Paradise
 //
 //  Created by Andres Wang on 23/03/2018.
@@ -10,7 +10,7 @@ import Foundation
 
 struct ResultArray: Codable {
     var pagination: Pagination!
-    var results: [SearchResult]!
+    var results: [Result]!
 }
 struct Pagination: Codable {
     var items: Int
@@ -18,9 +18,26 @@ struct Pagination: Codable {
     var pages: Int
     var per_page: Int
 }
-struct SearchResult: Codable {
+struct Result: Codable {
     var cover_image: String
     var resource_url: String
     var thumb: String
     var title: String
+    var type: String
+    var artistName: String? {
+        print(resource_url)
+        if let resourceData = URL(string: resource_url)!.requestData() {
+            return resourceData.parseToArtistName()
+        } else {
+            print("Fail to fetch Artist Name")
+            return nil
+        }
+    }
 }
+struct Release: Codable {
+    var artists_sort: String
+}
+
+
+
+

@@ -11,7 +11,7 @@ import UIKit
 class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    var searchResults = [SearchResult]()
+    var searchResults = [Result]()
     var hasSearched = false
     
     override func viewDidLoad() {
@@ -35,24 +35,11 @@ class SearchViewController: UIViewController {
         static let nothingFoundCell = "NothingFoundCell"
     }
     
-    // MARK: - Private Methods
-    func performStoreRequest(with url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("Download Error: \(error.localizedDescription)")
-            return nil
-        }
-    }
-    func parse(data: Data) -> [SearchResult] {
-        do {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(ResultArray.self, from: data)
-            return result.results
-        } catch {
-            print("JSON Error: \(error)")
-            return []
-        }
+    func showNetworkError() {
+        let alert = UIAlertController(title: NSLocalizedString("Whoops...", comment: "Network error title"), message: NSLocalizedString("There was an error accessing Discogs database. Please try again", comment: "Network error message"), preferredStyle: .alert)
+        let action = UIAlertAction(title: NSLocalizedString("OK", comment: "Confirm"), style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -66,11 +53,10 @@ extension SearchViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         hasSearched = true
         searchResults = []
-        let url = URL.discogs(searchText: text)
-        print("URL: '\(url)'")
-        if let data = performStoreRequest(with: url) {
-            let results = parse(data: data)
-            print("Got results: \(results)")
+        if let data = URL.discogs(searchText: text).requestData() {
+            searchResults = data.parseToResults()
+        } else {
+            showNetworkError()
         }
         tableView.reloadData()
     }
@@ -94,7 +80,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             let searchResult = searchResults[indexPath.row]
             cell.titleLabel.text = searchResult.title
-            cell.artistNameLabel.text = searchResult.resource_url
+            cell.artistNameLabel.text = searchResult.artistName
             return cell
         }
     }
