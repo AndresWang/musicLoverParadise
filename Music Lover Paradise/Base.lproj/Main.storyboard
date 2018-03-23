@@ -28,6 +28,8 @@
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Album title" translatesAutoresizingMaskIntoConstraints="NO" id="oOd-aV-08I">
                                 <rect key="frame" x="0.0" y="20" width="320" height="56"/>
+                                <color key="tintColor" red="0.90713793039321899" green="0.24338793754577637" blue="0.21147981286048889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.90713793039321899" green="0.24338793754577637" blue="0.21147981286048889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="90t-8b-SWw"/>
