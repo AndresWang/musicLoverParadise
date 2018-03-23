@@ -15,10 +15,11 @@
 		09C06E862064CC1900C34DC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */; };
 		09C06E912064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E902064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift */; };
 		09C06E9C2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E9B2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift */; };
-		09C06EAA2065067A00C34DC9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EA92065067A00C34DC9 /* SearchResult.swift */; };
+		09C06EAA2065067A00C34DC9 /* JSONStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EA92065067A00C34DC9 /* JSONStructure.swift */; };
 		09C06EAC20650BF200C34DC9 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09C06EAB20650BF200C34DC9 /* SearchResultCell.xib */; };
 		09C06EAE20650E7100C34DC9 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */; };
 		09C06EB0206510E600C34DC9 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09C06EAF206510E600C34DC9 /* NothingFoundCell.xib */; };
+		09C06EB220653DF900C34DC9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EB120653DF900C34DC9 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +54,11 @@
 		09C06E972064CC1900C34DC9 /* Music Lover ParadiseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Music Lover ParadiseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E9B2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_Lover_ParadiseUITests.swift; sourceTree = "<group>"; };
 		09C06E9D2064CC1900C34DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09C06EA92065067A00C34DC9 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		09C06EA92065067A00C34DC9 /* JSONStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructure.swift; sourceTree = "<group>"; };
 		09C06EAB20650BF200C34DC9 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		09C06EAF206510E600C34DC9 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		09C06EB120653DF900C34DC9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				09C06E782064CC1900C34DC9 /* AppDelegate.swift */,
-				09C06EA92065067A00C34DC9 /* SearchResult.swift */,
+				09C06EB120653DF900C34DC9 /* Extensions.swift */,
+				09C06EA92065067A00C34DC9 /* JSONStructure.swift */,
 				09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */,
 				09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */,
 				09C06E7C2064CC1900C34DC9 /* Main.storyboard */,
@@ -277,8 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */,
+				09C06EB220653DF900C34DC9 /* Extensions.swift in Sources */,
 				09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */,
-				09C06EAA2065067A00C34DC9 /* SearchResult.swift in Sources */,
+				09C06EAA2065067A00C34DC9 /* JSONStructure.swift in Sources */,
 				09C06E812064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld in Sources */,
 				09C06EAE20650E7100C34DC9 /* SearchResultCell.swift in Sources */,
 			);

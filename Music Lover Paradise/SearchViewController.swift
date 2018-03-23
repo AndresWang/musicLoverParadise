@@ -34,19 +34,44 @@ class SearchViewController: UIViewController {
         static let searchResultCell = "SearchResultCell"
         static let nothingFoundCell = "NothingFoundCell"
     }
+    
+    // MARK: - Private Methods
+    func performStoreRequest(with url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    func parse(data: Data) -> [SearchResult] {
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ResultArray.self, from: data)
+            return result.results
+        } catch {
+            print("JSON Error: \(error)")
+            return []
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        searchResults = []
-        if searchBar.text! != "justin bieber" {
-            for i in 0...2 {
-                let searchResult = SearchResult(title: String(format: "Fake Result %d for '%@'", i, searchBar.text!), artistName: "Andres")
-                searchResults.append(searchResult)
-            }
+        guard let text = searchBar.text, !text.isEmpty else {
+            print("No String Entered")
+            searchBar.resignFirstResponder()
+            return
         }
+        searchBar.resignFirstResponder()
         hasSearched = true
+        searchResults = []
+        let url = URL.discogs(searchText: text)
+        print("URL: '\(url)'")
+        if let data = performStoreRequest(with: url) {
+            let results = parse(data: data)
+            print("Got results: \(results)")
+        }
         tableView.reloadData()
     }
     func position(for bar: UIBarPositioning) -> UIBarPosition {
@@ -69,7 +94,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             let searchResult = searchResults[indexPath.row]
             cell.titleLabel.text = searchResult.title
-            cell.artistNameLabel.text = searchResult.artistName
+            cell.artistNameLabel.text = searchResult.resource_url
             return cell
         }
     }
