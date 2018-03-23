@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09541F6920656F1800A12F22 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09541F6820656F1800A12F22 /* LoadingCell.xib */; };
 		09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E782064CC1900C34DC9 /* AppDelegate.swift */; };
 		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09541F6820656F1800A12F22 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		09C06E752064CC1900C34DC9 /* Music Lover Paradise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lover Paradise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E782064CC1900C34DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				09C06E7C2064CC1900C34DC9 /* Main.storyboard */,
 				09C06EAB20650BF200C34DC9 /* SearchResultCell.xib */,
 				09C06EAF206510E600C34DC9 /* NothingFoundCell.xib */,
+				09541F6820656F1800A12F22 /* LoadingCell.xib */,
 				09C06E822064CC1900C34DC9 /* Assets.xcassets */,
 				09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */,
 				09C06E872064CC1900C34DC9 /* Info.plist */,
@@ -252,6 +255,7 @@
 			files = (
 				09C06E862064CC1900C34DC9 /* LaunchScreen.storyboard in Resources */,
 				09C06E832064CC1900C34DC9 /* Assets.xcassets in Resources */,
+				09541F6920656F1800A12F22 /* LoadingCell.xib in Resources */,
 				09C06EAC20650BF200C34DC9 /* SearchResultCell.xib in Resources */,
 				09C06EB0206510E600C34DC9 /* NothingFoundCell.xib in Resources */,
 				09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */,

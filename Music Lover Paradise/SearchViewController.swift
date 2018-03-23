@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var searchResults = [Result]()
     var hasSearched = false
+    var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +25,10 @@ class SearchViewController: UIViewController {
         // Register Nibs
         let searchResultCellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
         let nothingFoundCellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
+        let loadingCellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
         tableView.register(searchResultCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
         tableView.register(nothingFoundCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
+        tableView.register(loadingCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
         
         // Actions
         searchBar.becomeFirstResponder()
@@ -34,6 +37,7 @@ class SearchViewController: UIViewController {
     struct TableViewCellIdentifiers {
         static let searchResultCell = "SearchResultCell"
         static let nothingFoundCell = "NothingFoundCell"
+        static let loadingCell = "LoadingCell"
     }
     
     func showNetworkError() {
@@ -52,15 +56,18 @@ extension SearchViewController: UISearchBarDelegate {
             return
         }
         searchBar.resignFirstResponder()
-        hasSearched = true
-        searchResults = []
-        if let data = URL.discogs(searchText: text).requestData() {
-            searchResults = data.parseToResults()
-            searchResults.sort(by: <)
-        } else {
-            showNetworkError()
-        }
+        isLoading = true
         tableView.reloadData()
+//        hasSearched = true
+//        searchResults = []
+//        if let data = URL.discogs(searchText: text).requestData() {
+//            searchResults = data.parseToResults()
+//            searchResults.sort(by: <)
+//        } else {
+//            showNetworkError()
+//        }
+//        isLoading = false
+//        tableView.reloadData()
     }
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
@@ -69,14 +76,25 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchResults.count == 0 {
-            return hasSearched ? 1 : 0
+        if isLoading {
+            return 1
+        } else if !hasSearched {
+            return 0
+        } else if searchResults.count == 0 {
+            return 1
         } else {
             return searchResults.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if searchResults.count == 0 {
+        if isLoading {
+            let cell = tableView.dequeueReusableCell(withIdentifier:
+                TableViewCellIdentifiers.loadingCell, for: indexPath)
+            
+            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            spinner.startAnimating()
+            return cell
+        } else if searchResults.count == 0 {
             return tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.nothingFoundCell, for: indexPath)
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
@@ -90,7 +108,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if searchResults.count == 0 {
+        if searchResults.count == 0 || isLoading {
             return nil
         } else {
             return indexPath
