@@ -8,6 +8,10 @@
 
 import Foundation
 
+func < (lhs: Result, rhs: Result) -> Bool {
+    return lhs.artistName.localizedCompare(rhs.artistName) == .orderedAscending
+}
+
 extension URL {
     static func discogs(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!

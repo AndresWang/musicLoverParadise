@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         // TableView Setups
         tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 54, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 80
         
         // Register Nibs
@@ -55,6 +56,7 @@ extension SearchViewController: UISearchBarDelegate {
         searchResults = []
         if let data = URL.discogs(searchText: text).requestData() {
             searchResults = data.parseToResults()
+            searchResults.sort(by: <)
         } else {
             showNetworkError()
         }

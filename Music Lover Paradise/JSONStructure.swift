@@ -24,13 +24,12 @@ struct Result: Codable {
     var thumb: String
     var title: String
     var type: String
-    var artistName: String? {
-        print(resource_url)
+    var artistName: String {
         if let resourceData = URL(string: resource_url)!.requestData() {
             return resourceData.parseToArtistName()
         } else {
             print("Fail to fetch Artist Name")
-            return nil
+            return NSLocalizedString("Unknown", comment: "Unknown artist")
         }
     }
 }
