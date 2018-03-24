@@ -9,9 +9,9 @@
 import UIKit
 
 class SearchResultCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
-    @IBOutlet weak var artworkImageView: UIImageView!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var yearLabel: UILabel!
+    @IBOutlet weak private var artworkImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
