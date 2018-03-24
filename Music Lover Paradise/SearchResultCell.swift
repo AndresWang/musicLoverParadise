@@ -19,11 +19,4 @@ class SearchResultCell: UITableViewCell {
         selectedView.backgroundColor = #colorLiteral(red: 0.9071379304, green: 0.2433879375, blue: 0.2114798129, alpha: 0.5)
         selectedBackgroundView = selectedView
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

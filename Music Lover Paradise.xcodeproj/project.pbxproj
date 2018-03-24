@@ -11,7 +11,6 @@
 		09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E782064CC1900C34DC9 /* AppDelegate.swift */; };
 		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
-		09C06E812064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7F2064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld */; };
 		09C06E832064CC1900C34DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E822064CC1900C34DC9 /* Assets.xcassets */; };
 		09C06E862064CC1900C34DC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */; };
 		09C06E912064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E902064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift */; };
@@ -46,7 +45,6 @@
 		09C06E782064CC1900C34DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		09C06E7D2064CC1900C34DC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		09C06E802064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Music_Lover_Paradise.xcdatamodel; sourceTree = "<group>"; };
 		09C06E822064CC1900C34DC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09C06E852064CC1900C34DC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09C06E872064CC1900C34DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				09C06E822064CC1900C34DC9 /* Assets.xcassets */,
 				09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */,
 				09C06E872064CC1900C34DC9 /* Info.plist */,
-				09C06E7F2064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld */,
 			);
 			path = "Music Lover Paradise";
 			sourceTree = "<group>";
@@ -287,7 +284,6 @@
 				09C06EB220653DF900C34DC9 /* Extensions.swift in Sources */,
 				09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */,
 				09C06EAA2065067A00C34DC9 /* JSONStructure.swift in Sources */,
-				09C06E812064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld in Sources */,
 				09C06EAE20650E7100C34DC9 /* SearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,19 +582,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		09C06E7F2064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				09C06E802064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodel */,
-			);
-			currentVersion = 09C06E802064CC1900C34DC9 /* Music_Lover_Paradise.xcdatamodel */;
-			path = Music_Lover_Paradise.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 09C06E6D2064CC1900C34DC9 /* Project object */;
 }

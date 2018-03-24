@@ -40,7 +40,8 @@ class SearchViewController: UIViewController {
         static let loadingCell = "LoadingCell"
     }
     
-    func showNetworkError() {
+    // MARK: - Private Methods
+    private func showNetworkError() {
         let alert = UIAlertController(title: NSLocalizedString("Whoops...", comment: "Network error title"), message: NSLocalizedString("There was an error accessing Discogs database. Please try again", comment: "Network error message"), preferredStyle: .alert)
         let action = UIAlertAction(title: NSLocalizedString("OK", comment: "Confirm"), style: .default, handler: nil)
         alert.addAction(action)
