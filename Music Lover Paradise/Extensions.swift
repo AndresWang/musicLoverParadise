@@ -18,7 +18,7 @@ func > (lhs: Result, rhs: Result) -> Bool {
 extension URL {
     static func discogs(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format: "https://api.discogs.com/database/search?format=album&type=master&title=%@&key=ePhrcpQMVtEUrdiOPNgh&secret=DldGkZBXNumyRZfsPMXhjfhfjhSOuWSd", encodedText)
+        let urlString = String(format: "https://api.discogs.com/database/search?type=master&title=%@&key=ePhrcpQMVtEUrdiOPNgh&secret=DldGkZBXNumyRZfsPMXhjfhfjhSOuWSd", encodedText)
         return URL(string: urlString)!
     }
 }
