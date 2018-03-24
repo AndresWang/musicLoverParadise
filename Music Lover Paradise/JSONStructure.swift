@@ -23,7 +23,7 @@ struct Result: Codable {
     var resource_url: String
     var cover_image: String
     var thumb: String
-    var year: String
+    var year: String?
 }
 struct Release: Codable {
     var artists_sort: String

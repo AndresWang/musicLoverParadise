@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     var searchResults = [Result]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: URLSessionDataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,16 +53,22 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text, !text.isEmpty else {print("No String Entered");searchBar.resignFirstResponder();return}
+        
+        // Cancel previous task
+        dataTask?.cancel()
+        
+        // Preparation
         searchBar.resignFirstResponder()
         isLoading = true
         tableView.reloadData()
         hasSearched = true
         searchResults = []
         
+        // URLSession
         let session = URLSession.shared
-        let dataTask = session.dataTask(with: URL.discogs(searchText: text)) { data, response, error in
-            if let error = error {
-                print("Failure! \(error)")
+        dataTask = session.dataTask(with: URL.discogs(searchText: text)) { data, response, error in
+            if let error = error as NSError?, error.code == -999 {
+                return // Search was cancelled
             } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 if let data = data {
                     self.searchResults = data.parseToResults()
@@ -84,7 +91,7 @@ extension SearchViewController: UISearchBarDelegate {
                 self.showNetworkError()
             }
         }
-        dataTask.resume()
+        dataTask?.resume()
     }
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
