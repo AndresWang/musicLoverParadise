@@ -23,15 +23,7 @@ struct Result: Codable {
     var resource_url: String
     var cover_image: String
     var thumb: String
-    
-    var artistName: String {
-        if let resourceData = URL(string: resource_url)!.requestData() {
-            return resourceData.parseToArtistName()
-        } else {
-            print("Fail to fetch Artist Name")
-            return NSLocalizedString("Unknown", comment: "Unknown artist")
-        }
-    }
+    var year: String
 }
 struct Release: Codable {
     var artists_sort: String

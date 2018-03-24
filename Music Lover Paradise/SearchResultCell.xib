@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,9 +46,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="artistNameLabel" destination="u6X-AC-3I1" id="PZx-Fm-29E"/>
                 <outlet property="artworkImageView" destination="Zw5-M2-l1b" id="myj-0A-Z6m"/>
                 <outlet property="titleLabel" destination="94E-8Y-PCC" id="D5u-sS-0Se"/>
+                <outlet property="yearLabel" destination="u6X-AC-3I1" id="PZx-Fm-29E"/>
             </connections>
             <point key="canvasLocation" x="-143" y="-16"/>
         </tableViewCell>

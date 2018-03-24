@@ -51,24 +51,25 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text, !text.isEmpty else {
-            print("No String Entered")
-            searchBar.resignFirstResponder()
-            return
-        }
+        guard let text = searchBar.text, !text.isEmpty else {print("No String Entered");searchBar.resignFirstResponder();return}
         searchBar.resignFirstResponder()
         isLoading = true
         tableView.reloadData()
-//        hasSearched = true
-//        searchResults = []
-//        if let data = URL.discogs(searchText: text).requestData() {
-//            searchResults = data.parseToResults()
-//            searchResults.sort(by: <)
-//        } else {
-//            showNetworkError()
-//        }
-//        isLoading = false
-//        tableView.reloadData()
+        hasSearched = true
+        searchResults = []
+        let queue = DispatchQueue.global()
+        queue.async {
+            if let data = URL.discogs(searchText: text).requestData() {
+                self.searchResults = data.parseToResults()
+                self.searchResults.sort(by: <)
+            } else {
+                self.showNetworkError()
+            }
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.tableView.reloadData()
+            }
+        }
     }
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
@@ -89,9 +90,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isLoading {
-            let cell = tableView.dequeueReusableCell(withIdentifier:
-                TableViewCellIdentifiers.loadingCell, for: indexPath)
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.loadingCell, for: indexPath)
             let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
             spinner.startAnimating()
             return cell
@@ -101,7 +100,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             let searchResult = searchResults[indexPath.row]
             cell.titleLabel.text = searchResult.title
-            cell.artistNameLabel.text = searchResult.artistName
+            cell.yearLabel.text = searchResult.year
             return cell
         }
     }

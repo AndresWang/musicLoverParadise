@@ -9,7 +9,7 @@
 import Foundation
 
 func < (lhs: Result, rhs: Result) -> Bool {
-    return lhs.artistName.localizedCompare(rhs.artistName) == .orderedAscending
+    return lhs.title.localizedCompare(rhs.title) == .orderedAscending
 }
 
 extension URL {
@@ -37,16 +37,6 @@ extension Data {
         } catch {
             print("JSON Error: \(error)")
             return []
-        }
-    }
-    func parseToArtistName() -> String {
-        do {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(Release.self, from: self)
-            return result.artists_sort
-        } catch {
-            print("JSON Error: \(error)")
-            return ""
         }
     }
 }
