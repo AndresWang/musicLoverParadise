@@ -19,11 +19,11 @@ struct Pagination: Codable {
     var per_page: Int
 }
 struct Result: Codable {
-    var cover_image: String
-    var resource_url: String
-    var thumb: String
     var title: String
-    var type: String
+    var resource_url: String
+    var cover_image: String
+    var thumb: String
+    
     var artistName: String {
         if let resourceData = URL(string: resource_url)!.requestData() {
             return resourceData.parseToArtistName()
