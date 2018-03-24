@@ -25,7 +25,7 @@ class SearchViewController: UITableViewController {
         // TableView Setups
         tableView.rowHeight = 80
         
-        // Add searchBar
+        // Add SearchBar
         let search = UISearchController(searchResultsController: nil)
         search.delegate = self
         search.obscuresBackgroundDuringPresentation = false
