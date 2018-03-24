@@ -57,19 +57,34 @@ extension SearchViewController: UISearchBarDelegate {
         tableView.reloadData()
         hasSearched = true
         searchResults = []
-        let queue = DispatchQueue.global()
-        queue.async {
-            if let data = URL.discogs(searchText: text).requestData() {
-                self.searchResults = data.parseToResults()
-                self.searchResults.sort(by: <)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: URL.discogs(searchText: text)) { data, response, error in
+            if let error = error {
+                print("Failure! \(error)")
+            } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                if let data = data {
+                    self.searchResults = data.parseToResults()
+                    self.searchResults.sort(by: <)
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.tableView.reloadData()
+                    }
+                    return // Exit the closure
+                }
             } else {
-                self.showNetworkError()
+                print("Failure! \(response!)")
             }
+            
+            // Handle errors
             DispatchQueue.main.async {
+                self.hasSearched = false
                 self.isLoading = false
                 self.tableView.reloadData()
+                self.showNetworkError()
             }
         }
+        dataTask.resume()
     }
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached

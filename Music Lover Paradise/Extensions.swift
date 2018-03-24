@@ -18,14 +18,6 @@ extension URL {
         let urlString = String(format: "https://api.discogs.com/database/search?format=album&type=master&title=%@&key=ePhrcpQMVtEUrdiOPNgh&secret=DldGkZBXNumyRZfsPMXhjfhfjhSOuWSd", encodedText)
         return URL(string: urlString)!
     }
-    func requestData() -> Data? {
-        do {
-            return try Data(contentsOf: self)
-        } catch {
-            print("Download Error: \(error.localizedDescription)")
-            return nil
-        }
-    }
 }
 
 extension Data {
