@@ -14,7 +14,7 @@ class SearchViewController: UITableViewController {
     var isLoading = false
     var dataTask: URLSessionDataTask?
     
-    struct TableViewCellIdentifiers {
+    struct CellIdentifiers {
         static let searchResultCell = "SearchResultCell"
         static let nothingFoundCell = "NothingFoundCell"
         static let loadingCell = "LoadingCell"
@@ -36,22 +36,14 @@ class SearchViewController: UITableViewController {
         navigationItem.searchController = search
         
         // Register Nibs
-        let nothingFoundCellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
-        let loadingCellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
-        tableView.register(nothingFoundCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
-        tableView.register(loadingCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
+        let nothingFoundCellNib = UINib(nibName: CellIdentifiers.nothingFoundCell, bundle: nil)
+        let loadingCellNib = UINib(nibName: CellIdentifiers.loadingCell, bundle: nil)
+        tableView.register(nothingFoundCellNib, forCellReuseIdentifier: CellIdentifiers.nothingFoundCell)
+        tableView.register(loadingCellNib, forCellReuseIdentifier: CellIdentifiers.loadingCell)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if searchResults.isEmpty {navigationItem.searchController?.isActive = true}
-    }
-    
-    // MARK: Private Methods
-    private func showNetworkError() {
-        let alert = UIAlertController(title: NSLocalizedString("Whoops...", comment: "Network error title"), message: NSLocalizedString("There was an error accessing Discogs database. Please try again", comment: "Network error message"), preferredStyle: .alert)
-        let action = UIAlertAction(title: NSLocalizedString("OK", comment: "Confirm"), style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -64,8 +56,8 @@ extension SearchViewController: UISearchBarDelegate {
         dataTask?.cancel()
         
         // Preparation
-        tableView.contentOffset = .zero
         searchBar.resignFirstResponder()
+        tableView.contentOffset = .zero
         isLoading = true
         tableView.reloadData()
         hasSearched = true
@@ -105,6 +97,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
+// MARK:- UISearchControllerDelegate
 extension SearchViewController: UISearchControllerDelegate {
     func didPresentSearchController(_ searchController: UISearchController) {
         DispatchQueue.main.async {searchController.searchBar.becomeFirstResponder()}
@@ -126,15 +119,15 @@ extension SearchViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isLoading {
-            let loadingCell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.loadingCell, for: indexPath)
+            let loadingCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.loadingCell, for: indexPath)
             let spinner = loadingCell.viewWithTag(100) as! UIActivityIndicatorView
             spinner.startAnimating()
             return loadingCell
         } else if searchResults.count == 0 {
-            let nothingFoundCell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.nothingFoundCell, for: indexPath)
+            let nothingFoundCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.nothingFoundCell, for: indexPath)
             return nothingFoundCell
         } else {
-            let searchResultCell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
+            let searchResultCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             searchResultCell.configure(for: searchResults[indexPath.row])
             return searchResultCell
         }
