@@ -12,7 +12,6 @@
 		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
 		09C06E832064CC1900C34DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E822064CC1900C34DC9 /* Assets.xcassets */; };
-		09C06E862064CC1900C34DC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */; };
 		09C06E912064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E902064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift */; };
 		09C06E9C2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E9B2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift */; };
 		09C06EAA2065067A00C34DC9 /* JSONStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EA92065067A00C34DC9 /* JSONStructure.swift */; };
@@ -46,7 +45,6 @@
 		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		09C06E7D2064CC1900C34DC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		09C06E822064CC1900C34DC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		09C06E852064CC1900C34DC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09C06E872064CC1900C34DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09C06E8C2064CC1900C34DC9 /* Music Lover ParadiseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Music Lover ParadiseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E902064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_Lover_ParadiseTests.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				09C06EAF206510E600C34DC9 /* NothingFoundCell.xib */,
 				09541F6820656F1800A12F22 /* LoadingCell.xib */,
 				09C06E822064CC1900C34DC9 /* Assets.xcassets */,
-				09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */,
 				09C06E872064CC1900C34DC9 /* Info.plist */,
 			);
 			path = "Music Lover Paradise";
@@ -250,7 +247,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09C06E862064CC1900C34DC9 /* LaunchScreen.storyboard in Resources */,
 				09C06E832064CC1900C34DC9 /* Assets.xcassets in Resources */,
 				09541F6920656F1800A12F22 /* LoadingCell.xib in Resources */,
 				09C06EAC20650BF200C34DC9 /* SearchResultCell.xib in Resources */,
@@ -326,14 +322,6 @@
 				09C06E7D2064CC1900C34DC9 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		09C06E842064CC1900C34DC9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				09C06E852064CC1900C34DC9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
