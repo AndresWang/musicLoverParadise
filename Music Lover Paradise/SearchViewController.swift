@@ -8,32 +8,11 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+class SearchViewController: UITableViewController {
     var searchResults = [Result]()
     var hasSearched = false
     var isLoading = false
     var dataTask: URLSessionDataTask?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // TableView Setups
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
-        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 54, left: 0, bottom: 0, right: 0)
-        tableView.rowHeight = 80
-        
-        // Register Nibs
-        let searchResultCellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
-        let nothingFoundCellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
-        let loadingCellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
-        tableView.register(searchResultCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
-        tableView.register(nothingFoundCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
-        tableView.register(loadingCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
-        
-        // Actions
-        searchBar.becomeFirstResponder()
-    }
     
     struct TableViewCellIdentifiers {
         static let searchResultCell = "SearchResultCell"
@@ -41,7 +20,33 @@ class SearchViewController: UIViewController {
         static let loadingCell = "LoadingCell"
     }
     
-    // MARK: - Private Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // TableView Setups
+        tableView.rowHeight = 80
+        
+        // Add searchBar
+        let search = UISearchController(searchResultsController: nil)
+        search.delegate = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.definesPresentationContext = true
+        search.searchBar.delegate = self
+        search.searchBar.placeholder = NSLocalizedString("Album Title", comment: "A placeholder to search album" )
+        search.searchBar.tintColor = #colorLiteral(red: 0.9071379304, green: 0.2433879375, blue: 0.2114798129, alpha: 1)
+        navigationItem.searchController = search
+        
+        // Register Nibs
+        let nothingFoundCellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
+        let loadingCellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
+        tableView.register(nothingFoundCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
+        tableView.register(loadingCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if searchResults.isEmpty {navigationItem.searchController?.isActive = true}
+    }
+    
+    // MARK: Private Methods
     private func showNetworkError() {
         let alert = UIAlertController(title: NSLocalizedString("Whoops...", comment: "Network error title"), message: NSLocalizedString("There was an error accessing Discogs database. Please try again", comment: "Network error message"), preferredStyle: .alert)
         let action = UIAlertAction(title: NSLocalizedString("OK", comment: "Confirm"), style: .default, handler: nil)
@@ -50,6 +55,7 @@ class SearchViewController: UIViewController {
     }
 }
 
+// MARK:- UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text, !text.isEmpty else {print("No String Entered");searchBar.resignFirstResponder();return}
@@ -99,8 +105,15 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
-extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension SearchViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        DispatchQueue.main.async {searchController.searchBar.becomeFirstResponder()}
+    }
+}
+
+// MARK:- UITableViewDataSource, UITableViewDelegate
+extension SearchViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isLoading {
             return 1
         } else if !hasSearched {
@@ -111,7 +124,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             return searchResults.count
         }
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isLoading {
             let loadingCell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.loadingCell, for: indexPath)
             let spinner = loadingCell.viewWithTag(100) as! UIActivityIndicatorView
@@ -126,10 +139,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             return searchResultCell
         }
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if searchResults.count == 0 || isLoading {
             return nil
         } else {

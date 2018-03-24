@@ -9,9 +9,9 @@
 import UIKit
 
 class SearchResultCell: UITableViewCell {
+    @IBOutlet weak private var artworkImageView: UIImageView!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var yearLabel: UILabel!
-    @IBOutlet weak private var artworkImageView: UIImageView!
     var downloadTask: URLSessionDownloadTask?
     
     override func awakeFromNib() {
