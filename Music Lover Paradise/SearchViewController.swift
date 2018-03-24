@@ -58,6 +58,7 @@ extension SearchViewController: UISearchBarDelegate {
         dataTask?.cancel()
         
         // Preparation
+        tableView.contentOffset = .zero
         searchBar.resignFirstResponder()
         isLoading = true
         tableView.reloadData()
