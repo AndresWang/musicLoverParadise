@@ -27,9 +27,10 @@ extension UIViewController {
 extension URL {
     static func discogs(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format: "https://api.discogs.com/database/search?type=master&title=%@&key=ePhrcpQMVtEUrdiOPNgh&secret=DldGkZBXNumyRZfsPMXhjfhfjhSOuWSd", encodedText)
-        return URL(string: urlString)!
+        let searchTerm = String(format: "https://api.discogs.com/database/search?type=master&title=%@", encodedText)
+        return URL(string: searchTerm + discogsAPIKeySecret)!
     }
+    static let discogsAPIKeySecret = "&key=ePhrcpQMVtEUrdiOPNgh&secret=DldGkZBXNumyRZfsPMXhjfhfjhSOuWSd"
 }
 
 extension Data {

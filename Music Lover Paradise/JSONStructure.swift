@@ -15,6 +15,7 @@ struct Result: Codable {
     var title: String
     var year: String?
     var label: [String]
+    var genre: [String]
     var thumb: String
     var cover_image: String
     var resource_url: String

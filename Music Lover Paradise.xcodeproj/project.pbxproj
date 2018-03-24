@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09541F6920656F1800A12F22 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09541F6820656F1800A12F22 /* LoadingCell.xib */; };
+		095E0D942066AAC8006B42BC /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095E0D932066AAC8006B42BC /* AlbumViewController.swift */; };
 		09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E782064CC1900C34DC9 /* AppDelegate.swift */; };
 		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		09541F6820656F1800A12F22 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		095E0D932066AAC8006B42BC /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		09C06E752064CC1900C34DC9 /* Music Lover Paradise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lover Paradise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E782064CC1900C34DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				09C06EA92065067A00C34DC9 /* JSONStructure.swift */,
 				09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */,
 				09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */,
+				095E0D932066AAC8006B42BC /* AlbumViewController.swift */,
 				09C06E7C2064CC1900C34DC9 /* Main.storyboard */,
 				09C06EAF206510E600C34DC9 /* NothingFoundCell.xib */,
 				09541F6820656F1800A12F22 /* LoadingCell.xib */,
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				095E0D942066AAC8006B42BC /* AlbumViewController.swift in Sources */,
 				09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */,
 				09C06EB220653DF900C34DC9 /* Extensions.swift in Sources */,
 				09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */,
