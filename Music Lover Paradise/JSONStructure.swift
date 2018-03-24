@@ -20,10 +20,10 @@ struct Pagination: Codable {
 }
 struct Result: Codable {
     var title: String
-    var resource_url: String
-    var cover_image: String
-    var thumb: String
     var year: String?
+    var thumb: String
+    var cover_image: String
+    var resource_url: String
 }
 struct Release: Codable {
     var artists_sort: String

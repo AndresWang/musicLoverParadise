@@ -12,6 +12,7 @@ class SearchResultCell: UITableViewCell {
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var yearLabel: UILabel!
     @IBOutlet weak private var artworkImageView: UIImageView!
+    var downloadTask: URLSessionDownloadTask?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +25,7 @@ class SearchResultCell: UITableViewCell {
     func configure(for result: Result) {
         titleLabel.text = result.title
         yearLabel.text = result.year ?? NSLocalizedString("Unknown", comment: "No year to show")
+        artworkImageView.image = #imageLiteral(resourceName: "Placeholder")
+        if let thumbURL = URL(string: result.thumb) {downloadTask = artworkImageView.loadImage(url: thumbURL)}
     }
 }

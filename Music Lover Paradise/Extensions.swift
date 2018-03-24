@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
-func < (lhs: Result, rhs: Result) -> Bool {
-    return lhs.title.localizedCompare(rhs.title) == .orderedAscending
+func > (lhs: Result, rhs: Result) -> Bool {
+    let lhsYear = Int(lhs.year ?? "0") ?? 0
+    let rhsYear = Int(rhs.year ?? "0") ?? 0
+    return lhsYear > rhsYear
 }
 
 extension URL {
@@ -30,5 +33,18 @@ extension Data {
             print("JSON Error: \(error)")
             return []
         }
+    }
+}
+
+extension UIImageView {
+    func loadImage(url: URL) -> URLSessionDownloadTask {
+        let session = URLSession.shared
+        let downloadTask = session.downloadTask(with: url) { [weak self] localURL, response, error in
+            if error == nil, let localURL = localURL, let data = try? Data(contentsOf: localURL), let image = UIImage(data: data) {
+                DispatchQueue.main.async {if let weakSelf = self {weakSelf.image = image}}
+            }
+        }
+        downloadTask.resume()
+        return downloadTask
     }
 }

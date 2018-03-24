@@ -72,7 +72,7 @@ extension SearchViewController: UISearchBarDelegate {
             } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 if let data = data {
                     self.searchResults = data.parseToResults()
-                    self.searchResults.sort(by: <)
+                    self.searchResults.sort(by: >)
                     DispatchQueue.main.async {
                         self.isLoading = false
                         self.tableView.reloadData()
