@@ -19,8 +19,7 @@ class SearchResultCell: UITableViewCell {
         let selectedView = UIView(frame: CGRect.zero)
         selectedView.backgroundColor = #colorLiteral(red: 0.9071379304, green: 0.2433879375, blue: 0.2114798129, alpha: 0.5)
         selectedBackgroundView = selectedView
-        artworkImageView.layer.cornerRadius = 5.0
-        artworkImageView.clipsToBounds = true
+        artworkImageView.rounded()
     }
     
     override func prepareForReuse() {
@@ -32,7 +31,7 @@ class SearchResultCell: UITableViewCell {
     // MARK:- Boundary Methods
     func configure(for result: Result) {
         titleLabel.text = result.title
-        yearLabel.text = result.year ?? NSLocalizedString("Unknown", comment: "No year to show")
+        yearLabel.text = result.year ?? String.unknownText()
         artworkImageView.image = #imageLiteral(resourceName: "Placeholder")
         if let thumbURL = URL(string: result.thumb) {downloadTask = artworkImageView.loadImage(url: thumbURL)}
     }

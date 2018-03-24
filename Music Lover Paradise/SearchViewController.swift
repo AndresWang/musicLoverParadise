@@ -13,6 +13,7 @@ class SearchViewController: UITableViewController {
     var hasSearched = false
     var isLoading = false
     var dataTask: URLSessionDataTask?
+    var selectedIndexPath: IndexPath?
     
     struct CellIdentifiers {
         static let searchResultCell = "SearchResultCell"
@@ -46,7 +47,12 @@ class SearchViewController: UITableViewController {
         if searchResults.isEmpty {navigationItem.searchController?.isActive = true}
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        guard let indexPath = selectedIndexPath, let albumView = segue.destination as? AlbumViewController, segue.identifier == "AlbumSegue" else {return}
+        let selectedResult = searchResults[indexPath.row]
+        albumView.coverImageURL = selectedResult.cover_image
+        albumView.albumYear = selectedResult.year ?? String.unknownText()
+        albumView.albumGenre = selectedResult.genre.first ?? String.unknownText()
+        albumView.albumLabel = selectedResult.label.joined(separator: ", ")
     }
 }
 
@@ -137,13 +143,12 @@ extension SearchViewController {
             return searchResultCell
         }
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if searchResults.count == 0 || isLoading {
+            selectedIndexPath = nil
             return nil
         } else {
+            selectedIndexPath = indexPath
             return indexPath
         }
     }

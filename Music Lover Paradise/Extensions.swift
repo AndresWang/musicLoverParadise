@@ -24,6 +24,12 @@ extension UIViewController {
     }
 }
 
+extension String {
+    static func unknownText() -> String {
+        return NSLocalizedString("Unknown", comment: "No data to show")
+    }
+}
+
 extension URL {
     static func discogs(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
@@ -51,9 +57,15 @@ extension UIImageView {
         let downloadTask = URLSession.shared.downloadTask(with: url) { [weak self] localURL, response, error in
             if error == nil, let localURL = localURL, let data = try? Data(contentsOf: localURL), let image = UIImage(data: data) {
                 DispatchQueue.main.async {if let weakSelf = self {weakSelf.image = image}}
+            } else {
+                print("Something wrong with downloading the image")
             }
         }
         downloadTask.resume()
         return downloadTask
+    }
+    func rounded() {
+        self.layer.cornerRadius = 5.0
+        self.clipsToBounds = true
     }
 }
