@@ -58,7 +58,6 @@ extension SearchViewController: UISearchBarDelegate {
         hasSearched = true
         searchResults = []
         let queue = DispatchQueue.global()
-        
         queue.async {
             if let data = URL.discogs(searchText: text).requestData() {
                 self.searchResults = data.parseToResults()
