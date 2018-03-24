@@ -45,6 +45,9 @@ class SearchViewController: UITableViewController {
         super.viewDidAppear(animated)
         if searchResults.isEmpty {navigationItem.searchController?.isActive = true}
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
 }
 
 // MARK:- UISearchBarDelegate
@@ -75,11 +78,12 @@ extension SearchViewController: UISearchBarDelegate {
                     DispatchQueue.main.async {
                         self.isLoading = false
                         self.tableView.reloadData()
+                        self.navigationItem.searchController?.isActive = false
                     }
                     return // Exit the closure
                 }
             } else {
-                print("Failure! \(response!)")
+                print("URLSession Failure! \(String(describing: response))")                
             }
             
             // Handle errors
@@ -87,6 +91,7 @@ extension SearchViewController: UISearchBarDelegate {
                 self.hasSearched = false
                 self.isLoading = false
                 self.tableView.reloadData()
+                self.navigationItem.searchController?.isActive = false
                 self.showNetworkError()
             }
         }

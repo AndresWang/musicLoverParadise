@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,7 +48,7 @@
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nL-fY-aSX" userLabel="Separator">
                                             <rect key="frame" x="16" y="79" width="304" height="1"/>
-                                            <color key="backgroundColor" name="appleSeparator"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="0.5" id="Xrb-FC-s7D"/>
                                             </constraints>
@@ -73,7 +72,7 @@
                                     <outlet property="artworkImageView" destination="EE5-Ga-cgN" id="1QO-Ok-Wn0"/>
                                     <outlet property="titleLabel" destination="q9N-Fy-gp0" id="9aD-kX-jyd"/>
                                     <outlet property="yearLabel" destination="MQj-JR-YB7" id="7xc-t5-srh"/>
-                                    <segue destination="KlZ-Gi-jCB" kind="show" id="ksY-uR-pdH"/>
+                                    <segue destination="KlZ-Gi-jCB" kind="show" identifier="AlbumSegue" id="ksY-uR-pdH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -124,9 +123,6 @@
     </scenes>
     <resources>
         <image name="Placeholder" width="60" height="60"/>
-        <namedColor name="appleSeparator">
-            <color red="0.7843137255" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
     <color key="tintColor" red="0.90713793040000001" green="0.24338793750000001" blue="0.21147981290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
