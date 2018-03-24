@@ -9,14 +9,7 @@
 import Foundation
 
 struct ResultArray: Codable {
-    var pagination: Pagination!
     var results: [Result]!
-}
-struct Pagination: Codable {
-    var items: Int
-    var page: Int
-    var pages: Int
-    var per_page: Int
 }
 struct Result: Codable {
     var title: String
@@ -24,9 +17,6 @@ struct Result: Codable {
     var thumb: String
     var cover_image: String
     var resource_url: String
-}
-struct Release: Codable {
-    var artists_sort: String
 }
 
 
