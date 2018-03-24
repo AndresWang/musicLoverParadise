@@ -19,4 +19,10 @@ class SearchResultCell: UITableViewCell {
         selectedView.backgroundColor = #colorLiteral(red: 0.9071379304, green: 0.2433879375, blue: 0.2114798129, alpha: 0.5)
         selectedBackgroundView = selectedView
     }
+    
+    // MARK:- Boundary Methods
+    func configure(for result: Result) {
+        titleLabel.text = result.title
+        yearLabel.text = result.year ?? NSLocalizedString("Unknown", comment: "No year to show")
+    }
 }
