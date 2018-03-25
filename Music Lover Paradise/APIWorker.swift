@@ -9,11 +9,11 @@
 import Foundation
 
 protocol APIWorker {
-    func urlsessionDataTask(url: URL, prehandler: (() -> Void)?, dataHandler: @escaping (Data) -> Void, errorHandlerInMainThread: @escaping () -> Void) -> URLSessionDataTask
+    func urlSessionDataTask(url: URL, prehandler: (() -> Void)?, dataHandler: @escaping (Data) -> Void, errorHandler: @escaping () -> Void) -> URLSessionDataTask
 }
 
 struct DiscogsAPIWorker: APIWorker {
-    func urlsessionDataTask(url: URL, prehandler: (() -> Void)?, dataHandler: @escaping (Data) -> Void, errorHandlerInMainThread: @escaping () -> Void) -> URLSessionDataTask {
+    func urlSessionDataTask(url: URL, prehandler: (() -> Void)?, dataHandler: @escaping (Data) -> Void, errorHandler: @escaping () -> Void) -> URLSessionDataTask {
         let session = URLSession.shared
         let searchTask = session.dataTask(with: url) { data, response, error in
             // Preparation (ie: stop activity indicator)
@@ -29,7 +29,7 @@ struct DiscogsAPIWorker: APIWorker {
             }
             
             // Handle errors
-            DispatchQueue.main.async {errorHandlerInMainThread()}
+            DispatchQueue.main.async {errorHandler()}
         }
         searchTask.resume()
         return searchTask

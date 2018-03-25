@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController {
+class SearchViewController: UITableViewController, ActivityIndicatable {
     var searchResults = [Result]()
     var hasSearched = false
     var isLoading = false
@@ -61,13 +61,10 @@ class SearchViewController: UITableViewController {
         albumView.albumGenre = selectedResult.genre.first ?? String.unknownText
         albumView.albumLabel = selectedResult.label.joined(separator: ", ")
         albumView.album = album
+        albumView.api = api
     }
     
     // MARK: Private Methods
-    private func stopActivityIndicator() {
-        self.activityView?.removeFromSuperview()
-        self.activityView = nil
-    }
     private func searchDataHandler(data: Data) {
         searchResults = data.parseTo(jsonType: ResultArray.self)?.results ?? []
         searchResults.sort(by: >)
@@ -89,7 +86,8 @@ class SearchViewController: UITableViewController {
         DispatchQueue.main.async {self.performSegue(withIdentifier: "AlbumSegue", sender: self)}
     }
     private func loadAlbumErrorHandler() {
-        self.showNetworkError()
+        stopActivityIndicator()
+        showNetworkError()
     }
 }
 
@@ -110,7 +108,7 @@ extension SearchViewController: UISearchBarDelegate {
         searchResults = []
         
         // Call API
-        searchTask = api.urlsessionDataTask(url: URL.discogs(searchText: text), prehandler: nil, dataHandler: searchDataHandler, errorHandlerInMainThread: searchErrorHandler)
+        searchTask = api.urlSessionDataTask(url: URL.discogs(searchText: text), prehandler: nil, dataHandler: searchDataHandler, errorHandler: searchErrorHandler)
     }
 }
 
@@ -164,7 +162,7 @@ extension SearchViewController {
         let url = URL.discogs(resourceURL: urlString)
         searchTask?.cancel()
         loadAlbumTask?.cancel()
-        loadAlbumTask = api.urlsessionDataTask(url: url, prehandler: stopActivityIndicator, dataHandler: loadAlbumDataHandler, errorHandlerInMainThread: loadAlbumErrorHandler)
+        loadAlbumTask = api.urlSessionDataTask(url: url, prehandler: stopActivityIndicator, dataHandler: loadAlbumDataHandler, errorHandler: loadAlbumErrorHandler)
     }
 }
 

@@ -139,3 +139,14 @@ extension UIImageView {
         self.clipsToBounds = true
     }
 }
+
+protocol ActivityIndicatable: class {
+    var activityView: UIVisualEffectView? {get set}
+}
+
+extension ActivityIndicatable {
+    func stopActivityIndicator() {
+        activityView?.removeFromSuperview()
+        activityView = nil
+    }
+}

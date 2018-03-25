@@ -9,18 +9,19 @@
 import UIKit
 
 class ArtistViewController: UIViewController {
-    // Properties for Segue
+    // Segue properties
     var artistProfile: ArtistProfile?
     
     // IBOutlets
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var photo: UIImageView!
     @IBOutlet weak private var name: UILabel!
     @IBOutlet weak private var profile: UILabel!
     
-    // Private Properties
-    var downloadCoverTask: URLSessionDownloadTask?
+    // Self Properties
+    private var downloadCoverTask: URLSessionDownloadTask?
     
+    // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.contentInsetAdjustmentBehavior = .never
@@ -38,14 +39,11 @@ class ArtistViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = nil
     }

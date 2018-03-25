@@ -20,13 +20,14 @@ class TrackCell: UITableViewCell {
     }
 }
 
-class AlbumViewController: UIViewController {
+class AlbumViewController: UIViewController, ActivityIndicatable {
     // Segue properties
     var coverImageURL = ""
     var albumYear = ""
     var albumGenre = ""
     var albumLabel = ""
     var album: AlbumDetail?
+    var api: APIWorker?
     
     // IBOutlets
     @IBOutlet weak private var scrollView: UIScrollView!
@@ -40,23 +41,24 @@ class AlbumViewController: UIViewController {
     @IBOutlet weak private var footerLabel: UILabel!
     
     // Self properties
-    var downloadCoverTask: URLSessionDownloadTask?
-    var loadArtistTask: URLSessionDataTask?
     var activityView: UIVisualEffectView?
-    var artistProfile: ArtistProfile?
+    private var downloadCoverTask: URLSessionDownloadTask?
+    private var loadArtistTask: URLSessionDataTask?
+    private var artistProfile: ArtistProfile?
     
     // IBActions
     @IBAction func artistPressed(_ sender: Any) {
         loadArtistTask?.cancel()
         activityView = view.showActivityPanel(message: NSLocalizedString("Loading...", comment: "Network working"))
         if let artistURL = album?.artists.first?.resource_url {
-            loadArtist(artistURL: artistURL)
+            loadArtistTask = api?.urlSessionDataTask(url: URL.discogs(resourceURL: artistURL), prehandler: stopActivityIndicator, dataHandler: loadArtistDataHandler, errorHandler: {self.stopActivityIndicator() ; self.showNetworkError()})
         } else {
+            stopActivityIndicator()
             showNetworkError()
         }
     }
     
-
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
@@ -71,7 +73,7 @@ class AlbumViewController: UIViewController {
         DispatchQueue.main.async {self.scrollView.resizeContentSize()}
     }
     
-    // MARK: - Navigation
+    // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is SearchViewController {
             downloadCoverTask?.cancel()
@@ -82,7 +84,7 @@ class AlbumViewController: UIViewController {
         }
     }
     
-    // MARK: - Private Methods
+    // MARK: Private Methods
     private func updateUI() {
         titleLabel.text = album?.title
         artist.setTitle(album?.artists.first?.name, for: UIControlState())
@@ -100,30 +102,9 @@ class AlbumViewController: UIViewController {
         }
         return duration.stringFrom(interval: duration)
     }
-    private func loadArtist(artistURL: String) {
-        let session = URLSession.shared
-        loadArtistTask = session.dataTask(with: URL.discogs(resourceURL: artistURL)) { data, response, error in
-            DispatchQueue.main.async {
-                self.activityView?.removeFromSuperview()
-                self.activityView = nil
-            }
-            
-            if let error = error as NSError?, error.code == -999 {
-                return // Task was cancelled
-            } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                if let data = data {
-                    self.artistProfile = data.parseTo(jsonType: ArtistProfile.self)
-                    DispatchQueue.main.async {self.performSegue(withIdentifier: "ArtistSegue", sender: self)}
-                    return // Exit the closure
-                }
-            } else {
-                print("URLSession Failure! \(String(describing: response))")
-            }
-            
-            // Handle errors
-            DispatchQueue.main.async {self.showNetworkError()}
-        }
-        loadArtistTask?.resume()
+    private func loadArtistDataHandler(_ data: Data) {
+        artistProfile = data.parseTo(jsonType: ArtistProfile.self)
+        DispatchQueue.main.async {self.performSegue(withIdentifier: "ArtistSegue", sender: self)}
     }
 }
 
