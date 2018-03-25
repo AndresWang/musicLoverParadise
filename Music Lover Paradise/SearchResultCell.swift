@@ -17,7 +17,7 @@ class SearchResultCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let selectedView = UIView(frame: CGRect.zero)
-        selectedView.backgroundColor = #colorLiteral(red: 0.9071379304, green: 0.2433879375, blue: 0.2114798129, alpha: 0.5)
+        selectedView.backgroundColor = #colorLiteral(red: 0.9071379304, green: 0.2433879375, blue: 0.2114798129, alpha: 0.3519715314)
         selectedBackgroundView = selectedView
         artworkImageView.rounded()
     }
