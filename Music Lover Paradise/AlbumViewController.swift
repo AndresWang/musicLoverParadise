@@ -33,13 +33,14 @@ class AlbumViewController: UIViewController {
     
     // Self properties
     var downloadCoverTask: URLSessionDownloadTask?
-    var numberOfTracks = 5
+    var numberOfTracks = 15
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         tableView.rowHeight = 44
         tableViewHeight.constant = CGFloat(44 * numberOfTracks)
+        view.layoutIfNeeded()
         imageCover.rounded()
         if let coverURL = URL(string: coverImageURL) {downloadCoverTask = imageCover.loadImage(url: coverURL)}
     }
@@ -53,11 +54,8 @@ class AlbumViewController: UIViewController {
 
 // MARK:- UITableViewDataSource, UITableViewDelegate
 extension AlbumViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return numberOfTracks
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackCell
