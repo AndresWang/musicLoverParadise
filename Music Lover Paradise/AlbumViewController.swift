@@ -44,9 +44,9 @@ class AlbumViewController: UIViewController {
         imageCover.rounded()
         if let coverURL = URL(string: coverImageURL) {downloadCoverTask = imageCover.loadImage(url: coverURL)}
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        scrollView.resizeContentSize()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        DispatchQueue.main.async {self.scrollView.resizeContentSize()}
     }
     
     // MARK: - Navigation
