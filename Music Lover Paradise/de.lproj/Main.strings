@@ -10,6 +10,9 @@
 /* Class = "UILabel"; text = "Year"; ObjectID = "MQj-JR-YB7"; */
 "MQj-JR-YB7.text" = "N/A";
 
+/* Class = "UILabel"; text = "Artist Name"; ObjectID = "Mwt-u5-iUq"; */
+"Mwt-u5-iUq.text" = "N/A";
+
 /* Class = "UIButton"; normalTitle = "Camila Cabello"; ObjectID = "SUe-sU-i2K"; */
 "SUe-sU-i2K.normalTitle" = "N/A";
 
@@ -24,6 +27,9 @@
 
 /* Class = "UILabel"; text = "2:00"; ObjectID = "hjw-qs-UKl"; */
 "hjw-qs-UKl.text" = "N/A";
+
+/* Class = "UILabel"; text = "Profile"; ObjectID = "nXy-fo-wR2"; */
+"nXy-fo-wR2.text" = "N/A";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "q9N-Fy-gp0"; */
 "q9N-Fy-gp0.text" = "N/A";

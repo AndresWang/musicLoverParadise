@@ -17,6 +17,8 @@ class SearchViewController: UITableViewController {
     var selectedIndexPath: IndexPath?
     var album: AlbumDetail?
     var activityView: UIVisualEffectView?
+    let api: APIWorker = DiscogsAPIWorker()
+    
     
     struct CellIdentifiers {
         static let searchResultCell = "SearchResultCell"
@@ -49,9 +51,7 @@ class SearchViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard searchResults.isEmpty else {return}
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.navigationItem.searchController?.isActive = true
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {self.navigationItem.searchController?.isActive = true}
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = selectedIndexPath, let albumView = segue.destination as? AlbumViewController, segue.identifier == "AlbumSegue" else {return}
@@ -63,32 +63,33 @@ class SearchViewController: UITableViewController {
         albumView.album = album
     }
     
-    private func loadAlbum(albumURL: String) {
-        let session = URLSession.shared
-        loadAlbumTask = session.dataTask(with: URL.discogs(resourceURL: albumURL)) { data, response, error in
-            DispatchQueue.main.async {
-                self.activityView?.removeFromSuperview()
-                self.activityView = nil
-            }
-            
-            if let error = error as NSError?, error.code == -999 {
-                return // Task was cancelled
-            } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                if let data = data {
-                    self.album = data.parseTo(jsonType: AlbumDetail.self)
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "AlbumSegue", sender: self)
-                    }
-                    return // Exit the closure
-                }
-            } else {
-                print("URLSession Failure! \(String(describing: response))")
-            }
-            
-            // Handle errors
-            DispatchQueue.main.async {self.showNetworkError()}
+    // MARK: Private Methods
+    private func stopActivityIndicator() {
+        self.activityView?.removeFromSuperview()
+        self.activityView = nil
+    }
+    private func searchDataHandler(data: Data) {
+        searchResults = data.parseTo(jsonType: ResultArray.self)?.results ?? []
+        searchResults.sort(by: >)
+        DispatchQueue.main.async {
+            self.isLoading = false
+            self.tableView.reloadData()
+            self.navigationItem.searchController?.isActive = false
         }
-        loadAlbumTask?.resume()
+    }
+    private func searchErrorHandler() {
+        hasSearched = false
+        isLoading = false
+        tableView.reloadData()
+        navigationItem.searchController?.isActive = false
+        showNetworkError()
+    }
+    private func loadAlbumDataHandler(data: Data) {
+        album = data.parseTo(jsonType: AlbumDetail.self)
+        DispatchQueue.main.async {self.performSegue(withIdentifier: "AlbumSegue", sender: self)}
+    }
+    private func loadAlbumErrorHandler() {
+        self.showNetworkError()
     }
 }
 
@@ -108,39 +109,8 @@ extension SearchViewController: UISearchBarDelegate {
         hasSearched = true
         searchResults = []
         
-        // URLSession
-        let session = URLSession.shared
-        searchTask = session.dataTask(with: URL.discogs(searchText: text)) { data, response, error in
-            if let error = error as NSError?, error.code == -999 {
-                return // Search was cancelled
-            } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                if let data = data {
-                    self.searchResults = data.parseTo(jsonType: ResultArray.self)?.results ?? []
-                    self.searchResults.sort(by: >)
-                    DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.tableView.reloadData()
-                        self.navigationItem.searchController?.isActive = false
-                    }
-                    return // Exit the closure
-                }
-            } else {
-                print("URLSession Failure! \(String(describing: response))")                
-            }
-            
-            // Handle errors
-            DispatchQueue.main.async {
-                self.hasSearched = false
-                self.isLoading = false
-                self.tableView.reloadData()
-                self.navigationItem.searchController?.isActive = false
-                self.showNetworkError()
-            }
-        }
-        searchTask?.resume()
-    }
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
+        // Call API
+        searchTask = api.urlsessionDataTask(url: URL.discogs(searchText: text), prehandler: nil, dataHandler: searchDataHandler, errorHandlerInMainThread: searchErrorHandler)
     }
 }
 
@@ -189,10 +159,12 @@ extension SearchViewController {
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        activityView = view.showActivityPanel(message: NSLocalizedString("Loading...", comment: "Network working"))
+        let urlString = searchResults[indexPath.row].resource_url
+        let url = URL.discogs(resourceURL: urlString)
         searchTask?.cancel()
         loadAlbumTask?.cancel()
-        activityView = view.showActivityPanel(message: NSLocalizedString("Loading...", comment: "Network working"))
-        loadAlbum(albumURL: searchResults[indexPath.row].resource_url)
+        loadAlbumTask = api.urlsessionDataTask(url: url, prehandler: stopActivityIndicator, dataHandler: loadAlbumDataHandler, errorHandlerInMainThread: loadAlbumErrorHandler)
     }
 }
 

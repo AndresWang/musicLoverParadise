@@ -293,7 +293,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPa-T1-BEd" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="JH1-od-dnp">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JH1-od-dnp">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="jw1-tg-o4q"/>
@@ -378,7 +378,6 @@
     </scenes>
     <resources>
         <image name="Placeholder" width="60" height="60"/>
-        <image name="noImage" width="377" height="311"/>
     </resources>
     <color key="tintColor" red="0.90713793040000001" green="0.24338793750000001" blue="0.21147981290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

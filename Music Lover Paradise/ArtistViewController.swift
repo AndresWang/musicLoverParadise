@@ -26,6 +26,8 @@ class ArtistViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         if let imageURLString = artistProfile?.primaryImage, let url = URL(string: imageURLString) {
             downloadCoverTask = photo.loadImage(url: url)
+        } else {
+            photo.image = #imageLiteral(resourceName: "noImage")
         }
         name.text = artistProfile?.name
         profile.text = artistProfile?.profile

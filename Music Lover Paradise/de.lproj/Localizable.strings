@@ -1,8 +1,11 @@
+/* Number of songs */
+"%ld Songs" = "%ld Titel";
+
 /* A placeholder to search album */
 "Album Title" = "Albumtitel";
 
 /* Network working */
-"Loading..." = "Wird geladen...";
+"Loading..." = "Laden...";
 
 /* Confirm Button */
 "OK" = "OK";
