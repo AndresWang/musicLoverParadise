@@ -22,6 +22,7 @@ class AlbumViewController: UIViewController {
     var albumLabel = ""
     
     // IBOutlets
+    @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var imageCover: UIImageView!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var artist: UIButton!
@@ -40,15 +41,25 @@ class AlbumViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         tableView.rowHeight = 44
         tableViewHeight.constant = CGFloat(44 * numberOfTracks)
-        view.layoutIfNeeded()
         imageCover.rounded()
         if let coverURL = URL(string: coverImageURL) {downloadCoverTask = imageCover.loadImage(url: coverURL)}
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: contentHeight)
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+    }
+    
+    private var contentHeight: CGFloat {
+        let coverHeight = CGFloat(150)
+        let footerHeight = CGFloat(34)
+        let space = CGFloat(15)
+        return space + coverHeight + space + tableViewHeight.constant + space + footerHeight + space
     }
 }
 
