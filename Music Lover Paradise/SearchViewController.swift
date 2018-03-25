@@ -25,6 +25,7 @@ class SearchViewController: UITableViewController {
         super.viewDidLoad()
         // TableView Setups
         tableView.rowHeight = 80
+        title = NSLocalizedString("Search Album", comment: "Big nav title")
         
         // Add SearchBar
         let search = UISearchController(searchResultsController: nil)
