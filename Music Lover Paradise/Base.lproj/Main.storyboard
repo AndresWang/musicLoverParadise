@@ -282,41 +282,66 @@
         <!--Artist View Controller-->
         <scene sceneID="d7W-QO-P1A">
             <objects>
-                <viewController id="tsF-gt-r5a" customClass="ArtistViewController" customModule="Music_Lover_Paradise" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="tsF-gt-r5a" customClass="ArtistViewController" customModule="Music_Lover_Paradise" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7qZ-pp-oSU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="JH1-od-dnp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEG-pz-tMv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPa-T1-BEd" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="JH1-od-dnp">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="250" id="jw1-tg-o4q"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwt-u5-iUq">
+                                                <rect key="frame" x="15" y="270" width="290" height="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXy-fo-wR2">
+                                                <rect key="frame" x="15" y="308" width="290" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59481348170000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="nXy-fo-wR2" firstAttribute="top" secondItem="Mwt-u5-iUq" secondAttribute="bottom" constant="8" id="6aR-7N-ty0"/>
+                                            <constraint firstAttribute="trailing" secondItem="JH1-od-dnp" secondAttribute="trailing" id="JiW-5L-NIm"/>
+                                            <constraint firstItem="JH1-od-dnp" firstAttribute="top" secondItem="dPa-T1-BEd" secondAttribute="top" id="L4t-qZ-agA"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mwt-u5-iUq" secondAttribute="trailing" constant="15" id="LM8-O1-7ET"/>
+                                            <constraint firstItem="JH1-od-dnp" firstAttribute="leading" secondItem="dPa-T1-BEd" secondAttribute="leading" id="Pf3-yk-aKX"/>
+                                            <constraint firstAttribute="trailing" secondItem="nXy-fo-wR2" secondAttribute="trailing" constant="15" id="THb-Ol-RrE"/>
+                                            <constraint firstItem="nXy-fo-wR2" firstAttribute="leading" secondItem="dPa-T1-BEd" secondAttribute="leading" constant="15" id="wQk-Cm-qXc"/>
+                                            <constraint firstItem="Mwt-u5-iUq" firstAttribute="top" secondItem="JH1-od-dnp" secondAttribute="bottom" constant="20" id="yUk-TK-dKR"/>
+                                            <constraint firstItem="Mwt-u5-iUq" firstAttribute="leading" secondItem="dPa-T1-BEd" secondAttribute="leading" constant="15" id="yXi-Mq-Y9K"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="jw1-tg-o4q"/>
+                                    <constraint firstAttribute="bottom" secondItem="dPa-T1-BEd" secondAttribute="bottom" id="JoG-XO-jEM"/>
+                                    <constraint firstItem="dPa-T1-BEd" firstAttribute="top" secondItem="IEG-pz-tMv" secondAttribute="top" id="RIG-xz-Dy1"/>
+                                    <constraint firstAttribute="trailing" secondItem="dPa-T1-BEd" secondAttribute="trailing" id="eVj-Jl-3aD"/>
+                                    <constraint firstItem="dPa-T1-BEd" firstAttribute="leading" secondItem="IEG-pz-tMv" secondAttribute="leading" id="giB-OK-IlX"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwt-u5-iUq">
-                                <rect key="frame" x="15" y="270" width="290" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXy-fo-wR2">
-                                <rect key="frame" x="15" y="308" width="290" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59481348170000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vki-xP-iqM" firstAttribute="trailing" secondItem="nXy-fo-wR2" secondAttribute="trailing" constant="15" id="19E-lm-1ek"/>
-                            <constraint firstItem="JH1-od-dnp" firstAttribute="top" secondItem="7qZ-pp-oSU" secondAttribute="top" id="AU7-sU-qaB"/>
-                            <constraint firstItem="JH1-od-dnp" firstAttribute="leading" secondItem="vki-xP-iqM" secondAttribute="leading" id="BDu-EC-8Gy"/>
-                            <constraint firstItem="nXy-fo-wR2" firstAttribute="top" secondItem="Mwt-u5-iUq" secondAttribute="bottom" constant="8" id="Eaf-66-7O7"/>
-                            <constraint firstItem="JH1-od-dnp" firstAttribute="trailing" secondItem="vki-xP-iqM" secondAttribute="trailing" id="G39-24-HJX"/>
-                            <constraint firstItem="Mwt-u5-iUq" firstAttribute="leading" secondItem="vki-xP-iqM" secondAttribute="leading" constant="15" id="H5T-As-bls"/>
-                            <constraint firstItem="Mwt-u5-iUq" firstAttribute="top" secondItem="JH1-od-dnp" secondAttribute="bottom" constant="20" id="Pzb-LF-I9A"/>
-                            <constraint firstItem="nXy-fo-wR2" firstAttribute="leading" secondItem="vki-xP-iqM" secondAttribute="leading" constant="15" id="qfI-QY-LuN"/>
-                            <constraint firstItem="vki-xP-iqM" firstAttribute="trailing" secondItem="Mwt-u5-iUq" secondAttribute="trailing" constant="15" id="w2N-it-ea5"/>
+                            <constraint firstItem="IEG-pz-tMv" firstAttribute="trailing" secondItem="vki-xP-iqM" secondAttribute="trailing" id="8Td-N7-O0x"/>
+                            <constraint firstItem="dPa-T1-BEd" firstAttribute="width" secondItem="7qZ-pp-oSU" secondAttribute="width" id="9Yy-uw-J0R"/>
+                            <constraint firstItem="IEG-pz-tMv" firstAttribute="bottom" secondItem="vki-xP-iqM" secondAttribute="bottom" id="JhN-7Q-gPz"/>
+                            <constraint firstItem="IEG-pz-tMv" firstAttribute="top" secondItem="7qZ-pp-oSU" secondAttribute="top" id="fXe-Og-TGB"/>
+                            <constraint firstItem="dPa-T1-BEd" firstAttribute="height" secondItem="7qZ-pp-oSU" secondAttribute="height" priority="250" id="u0Z-XM-zUw"/>
+                            <constraint firstItem="IEG-pz-tMv" firstAttribute="leading" secondItem="vki-xP-iqM" secondAttribute="leading" id="xk7-UG-LvK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vki-xP-iqM"/>
                     </view>
@@ -325,11 +350,12 @@
                         <outlet property="name" destination="Mwt-u5-iUq" id="zET-Fc-aCJ"/>
                         <outlet property="photo" destination="JH1-od-dnp" id="cFF-sF-N4S"/>
                         <outlet property="profile" destination="nXy-fo-wR2" id="bIJ-Z6-Xxi"/>
+                        <outlet property="scrollView" destination="IEG-pz-tMv" id="7kG-Qo-HcU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvl-qu-IMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3279" y="132"/>
+            <point key="canvasLocation" x="3277.5" y="130.98591549295776"/>
         </scene>
         <!--Custom Nav Controller-->
         <scene sceneID="HB2-1I-dgP">

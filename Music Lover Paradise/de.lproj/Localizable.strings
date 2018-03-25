@@ -1,8 +1,14 @@
 /* A placeholder to search album */
 "Album Title" = "Albumtitel";
 
+/* Network working */
+"Loading..." = "Wird geladen...";
+
 /* Confirm Button */
 "OK" = "OK";
+
+/* Big nav title */
+"Search" = "Suche";
 
 /* Network error message */
 "There was an error accessing Discogs database. Please try again" = "Fehler beim Zugriff auf die Discogs Datenbank.Bitte erneut versuchen.";

@@ -13,6 +13,7 @@ class ArtistViewController: UIViewController {
     var artistProfile: ArtistProfile?
     
     // IBOutlets
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak private var photo: UIImageView!
     @IBOutlet weak private var name: UILabel!
     @IBOutlet weak private var profile: UILabel!
@@ -22,6 +23,7 @@ class ArtistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.contentInsetAdjustmentBehavior = .never
         if let imageURLString = artistProfile?.primaryImage, let url = URL(string: imageURLString) {
             downloadCoverTask = photo.loadImage(url: url)
         }
@@ -30,7 +32,7 @@ class ArtistViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.layoutIfNeeded()
+        DispatchQueue.main.async {self.scrollView.resizeContentSize()}
     }
 
     // MARK: - Navigation
