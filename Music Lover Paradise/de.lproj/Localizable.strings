@@ -1,15 +1,15 @@
 /* A placeholder to search album */
-"Album Title" = "";
+"Album Title" = "Albumtitel";
 
 /* Confirm Button */
-"OK" = "";
+"OK" = "OK";
 
 /* Network error message */
-"There was an error accessing Discogs database. Please try again" = "";
+"There was an error accessing Discogs database. Please try again" = "Fehler beim Zugriff auf die Discogs Datenbank.Bitte erneut versuchen.";
 
 /* No data to show */
-"Unknown" = "";
+"Unknown" = "Unbekannte";
 
 /* Network error title */
-"Whoops..." = "";
+"Whoops..." = "Hoppla...";
 
