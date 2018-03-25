@@ -31,7 +31,7 @@ class SearchResultCell: UITableViewCell {
     // MARK:- Boundary Methods
     func configure(for result: Result) {
         titleLabel.text = result.title
-        yearLabel.text = result.year ?? String.unknownText()
+        yearLabel.text = result.year ?? String.unknownText
         artworkImageView.image = #imageLiteral(resourceName: "Placeholder")
         if let thumbURL = URL(string: result.thumb) {downloadTask = artworkImageView.loadImage(url: thumbURL)}
     }

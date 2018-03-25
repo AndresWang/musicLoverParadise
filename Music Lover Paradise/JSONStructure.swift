@@ -20,6 +20,19 @@ struct Result: Codable {
     var label: [String]
     var resource_url: String
 }
+struct AlbumDetail: Codable {
+    var title: String
+    var artists: [Artist]!
+    var tracklist: [Track]!
+}
+struct Artist: Codable {
+    var name: String
+    var resource_url: String
+}
+struct Track: Codable {
+    var duration: String
+    var title: String
+}
 
 
 

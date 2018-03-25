@@ -72,7 +72,6 @@
                                     <outlet property="artworkImageView" destination="EE5-Ga-cgN" id="1QO-Ok-Wn0"/>
                                     <outlet property="titleLabel" destination="q9N-Fy-gp0" id="9aD-kX-jyd"/>
                                     <outlet property="yearLabel" destination="MQj-JR-YB7" id="7xc-t5-srh"/>
-                                    <segue destination="KlZ-Gi-jCB" kind="show" identifier="AlbumSegue" id="ksY-uR-pdH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -82,6 +81,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="x0C-CV-mOL"/>
+                    <connections>
+                        <segue destination="KlZ-Gi-jCB" kind="show" identifier="AlbumSegue" id="vVp-Hg-xSD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Fk-ch-tFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -146,7 +148,7 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackCell" id="Otn-xO-dRn" customClass="TrackCell" customModule="Music_Lover_Paradise" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="290" height="44"/>
+                                                        <rect key="frame" x="0.0" y="28" width="0.0" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Otn-xO-dRn" id="fdO-NS-rJB">
                                                             <rect key="frame" x="0.0" y="0.0" width="290" height="44"/>
@@ -206,15 +208,15 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="CUk-Es-AzQ" userLabel="Footer">
                                                 <rect key="frame" x="15" y="327" width="290" height="34"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="17 songs, 1hr 53min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKB-xO-YZq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="136.5" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="17 Songs, 1hr 53min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKB-xO-YZq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="138.5" height="19.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59481348167539272" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Sony" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fce-HW-9Ix">
-                                                        <rect key="frame" x="0.0" y="18" width="34.5" height="16"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <rect key="frame" x="0.0" y="19.5" width="28.5" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>

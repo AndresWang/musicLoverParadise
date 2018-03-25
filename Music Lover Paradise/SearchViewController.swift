@@ -12,8 +12,11 @@ class SearchViewController: UITableViewController {
     var searchResults = [Result]()
     var hasSearched = false
     var isLoading = false
-    var dataTask: URLSessionDataTask?
+    var searchTask: URLSessionDataTask?
+    var loadAlbumTask: URLSessionDataTask?
     var selectedIndexPath: IndexPath?
+    var album: AlbumDetail?
+    var activityView: UIVisualEffectView?
     
     struct CellIdentifiers {
         static let searchResultCell = "SearchResultCell"
@@ -25,7 +28,7 @@ class SearchViewController: UITableViewController {
         super.viewDidLoad()
         // TableView Setups
         tableView.rowHeight = 80
-        title = NSLocalizedString("Search Album", comment: "Big nav title")
+        title = NSLocalizedString("Search", comment: "Big nav title")
         
         // Add SearchBar
         let search = UISearchController(searchResultsController: nil)
@@ -51,9 +54,41 @@ class SearchViewController: UITableViewController {
         guard let indexPath = selectedIndexPath, let albumView = segue.destination as? AlbumViewController, segue.identifier == "AlbumSegue" else {return}
         let selectedResult = searchResults[indexPath.row]
         albumView.coverImageURL = selectedResult.cover_image
-        albumView.albumYear = selectedResult.year ?? String.unknownText()
-        albumView.albumGenre = selectedResult.genre.first ?? String.unknownText()
+        albumView.albumYear = selectedResult.year ?? String.unknownText
+        albumView.albumGenre = selectedResult.genre.first ?? String.unknownText
         albumView.albumLabel = selectedResult.label.joined(separator: ", ")
+        albumView.album = album
+    }
+    
+    private func loadAlbum(albumURL: String) {
+        let session = URLSession.shared
+        loadAlbumTask = session.dataTask(with: URL.discogs(resourceURL: albumURL)) { data, response, error in
+            DispatchQueue.main.async {
+                self.activityView?.removeFromSuperview()
+                self.activityView = nil
+            }
+            
+            if let error = error as NSError?, error.code == -999 {
+                return // Task was cancelled
+            } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                if let data = data {
+                    self.album = data.parseToAlbum()
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "AlbumSegue", sender: self)
+                    }
+                    return // Exit the closure
+                }
+            } else {
+                print("URLSession Failure! \(String(describing: response))")
+            }
+            
+            // Handle errors
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.showNetworkError()
+            }
+        }
+        loadAlbumTask?.resume()
     }
 }
 
@@ -63,7 +98,7 @@ extension SearchViewController: UISearchBarDelegate {
         guard let text = searchBar.text, !text.isEmpty else {print("No String Entered");searchBar.resignFirstResponder();return}
         
         // Cancel previous task
-        dataTask?.cancel()
+        searchTask?.cancel()
         
         // Preparation
         searchBar.resignFirstResponder()
@@ -75,7 +110,7 @@ extension SearchViewController: UISearchBarDelegate {
         
         // URLSession
         let session = URLSession.shared
-        dataTask = session.dataTask(with: URL.discogs(searchText: text)) { data, response, error in
+        searchTask = session.dataTask(with: URL.discogs(searchText: text)) { data, response, error in
             if let error = error as NSError?, error.code == -999 {
                 return // Search was cancelled
             } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
@@ -102,7 +137,7 @@ extension SearchViewController: UISearchBarDelegate {
                 self.showNetworkError()
             }
         }
-        dataTask?.resume()
+        searchTask?.resume()
     }
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
@@ -152,6 +187,12 @@ extension SearchViewController {
             selectedIndexPath = indexPath
             return indexPath
         }
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchTask?.cancel()
+        loadAlbumTask?.cancel()
+        activityView = view.showActivityPanel(message: NSLocalizedString("Loading...", comment: "Network working"))
+        loadAlbum(albumURL: searchResults[indexPath.row].resource_url)
     }
 }
 
