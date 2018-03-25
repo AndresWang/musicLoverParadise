@@ -46,20 +46,13 @@ class AlbumViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: contentHeight)
+        scrollView.resizeContentSize()
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    
-    private var contentHeight: CGFloat {
-        let coverHeight = CGFloat(150)
-        let footerHeight = CGFloat(34)
-        let space = CGFloat(15)
-        return space + coverHeight + space + tableViewHeight.constant + space + footerHeight + space
     }
 }
 

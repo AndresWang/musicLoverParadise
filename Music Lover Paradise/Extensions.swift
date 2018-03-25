@@ -52,6 +52,15 @@ extension Data {
     }
 }
 
+extension UIScrollView {
+    func resizeContentSize(offset: CGFloat = 15) {
+        var contentRect = CGRect.zero
+        let contentView = subviews[0]
+        for view in contentView.subviews {contentRect = contentRect.union(view.frame)}
+        contentSize = CGSize(width: contentSize.width, height: contentRect.size.height + offset)
+    }
+}
+
 extension UIImageView {
     func loadImage(url: URL) -> URLSessionDownloadTask {
         let downloadTask = URLSession.shared.downloadTask(with: url) { [weak self] localURL, response, error in
