@@ -10,6 +10,8 @@
 		095E0D942066AAC8006B42BC /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095E0D932066AAC8006B42BC /* AlbumViewController.swift */; };
 		097D8D942067847300BCF5CF /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097D8D962067847300BCF5CF /* NothingFoundCell.xib */; };
 		097D8D972067847D00BCF5CF /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097D8D992067847D00BCF5CF /* LoadingCell.xib */; };
+		097D8DA120678CBF00BCF5CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 097D8DA320678CBF00BCF5CF /* Localizable.strings */; };
+		097D8DA620678CC000BCF5CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 097D8DA820678CC000BCF5CF /* InfoPlist.strings */; };
 		09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E782064CC1900C34DC9 /* AppDelegate.swift */; };
 		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
@@ -42,9 +44,11 @@
 		095E0D932066AAC8006B42BC /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		097D8D952067847300BCF5CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
 		097D8D982067847D00BCF5CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCell.xib; sourceTree = "<group>"; };
-		097D8D9A2067848C00BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		097D8D9B2067848C00BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/NothingFoundCell.strings; sourceTree = "<group>"; };
 		097D8D9C2067848C00BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LoadingCell.strings; sourceTree = "<group>"; };
+		097D8D9E2067879400BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		097D8DA220678CBF00BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		097D8DA720678CC000BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09C06E752064CC1900C34DC9 /* Music Lover Paradise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lover Paradise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E782064CC1900C34DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 		09C06E772064CC1900C34DC9 /* Music Lover Paradise */ = {
 			isa = PBXGroup;
 			children = (
+				097D8DA820678CC000BCF5CF /* InfoPlist.strings */,
+				097D8DA320678CBF00BCF5CF /* Localizable.strings */,
 				09C06E782064CC1900C34DC9 /* AppDelegate.swift */,
 				09C06EB120653DF900C34DC9 /* Extensions.swift */,
 				09C06EA92065067A00C34DC9 /* JSONStructure.swift */,
@@ -232,6 +238,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 09C06E6C2064CC1900C34DC9;
 			productRefGroup = 09C06E762064CC1900C34DC9 /* Products */;
@@ -250,6 +257,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				097D8DA120678CBF00BCF5CF /* Localizable.strings in Resources */,
+				097D8DA620678CC000BCF5CF /* InfoPlist.strings in Resources */,
 				09C06E832064CC1900C34DC9 /* Assets.xcassets in Resources */,
 				097D8D972067847D00BCF5CF /* LoadingCell.xib in Resources */,
 				097D8D942067847300BCF5CF /* NothingFoundCell.xib in Resources */,
@@ -337,11 +346,27 @@
 			name = LoadingCell.xib;
 			sourceTree = "<group>";
 		};
+		097D8DA320678CBF00BCF5CF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				097D8DA220678CBF00BCF5CF /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		097D8DA820678CC000BCF5CF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				097D8DA720678CC000BCF5CF /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		09C06E7C2064CC1900C34DC9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				09C06E7D2064CC1900C34DC9 /* Base */,
-				097D8D9A2067848C00BCF5CF /* de */,
+				097D8D9E2067879400BCF5CF /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

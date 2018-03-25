@@ -1,0 +1,15 @@
+/* A placeholder to search album */
+"Album Title" = "";
+
+/* Confirm Button */
+"OK" = "";
+
+/* Network error message */
+"There was an error accessing Discogs database. Please try again" = "";
+
+/* No data to show */
+"Unknown" = "";
+
+/* Network error title */
+"Whoops..." = "";
+
