@@ -52,7 +52,7 @@ extension UIView {
         let label = UILabel(frame: CGRect(x: 46, y: 0, width: labelWidth, height: 46))
         label.text = message
         label.font = font
-        label.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.4808454055, green: 0.4808454055, blue: 0.4808454055, alpha: 1)
         panel.contentView.addSubview(label)
         
         // Show Panel

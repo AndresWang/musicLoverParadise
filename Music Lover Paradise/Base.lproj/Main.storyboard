@@ -357,10 +357,10 @@
             </objects>
             <point key="canvasLocation" x="3277.5" y="130.98591549295776"/>
         </scene>
-        <!--Custom Nav Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="HB2-1I-dgP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VcP-yX-mI7" customClass="CustomNavController" customModule="Music_Lover_Paradise" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VcP-yX-mI7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dYy-Rt-7zU">
                         <rect key="frame" x="0.0" y="20" width="320" height="93"/>

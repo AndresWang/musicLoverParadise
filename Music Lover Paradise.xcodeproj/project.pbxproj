@@ -13,7 +13,6 @@
 		097D8DA120678CBF00BCF5CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 097D8DA320678CBF00BCF5CF /* Localizable.strings */; };
 		097D8DA620678CC000BCF5CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 097D8DA820678CC000BCF5CF /* InfoPlist.strings */; };
 		097D8DAA2067B5BD00BCF5CF /* ArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097D8DA92067B5BD00BCF5CF /* ArtistViewController.swift */; };
-		097D8DAC2067BCBD00BCF5CF /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097D8DAB2067BCBD00BCF5CF /* CustomNavController.swift */; };
 		09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E782064CC1900C34DC9 /* AppDelegate.swift */; };
 		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
@@ -52,7 +51,6 @@
 		097D8DA220678CBF00BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		097D8DA720678CC000BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		097D8DA92067B5BD00BCF5CF /* ArtistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewController.swift; sourceTree = "<group>"; };
-		097D8DAB2067BCBD00BCF5CF /* CustomNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
 		09C06E752064CC1900C34DC9 /* Music Lover Paradise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lover Paradise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E782064CC1900C34DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				09C06E782064CC1900C34DC9 /* AppDelegate.swift */,
 				09C06EB120653DF900C34DC9 /* Extensions.swift */,
 				09C06EA92065067A00C34DC9 /* JSONStructure.swift */,
-				097D8DAB2067BCBD00BCF5CF /* CustomNavController.swift */,
 				09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */,
 				09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */,
 				095E0D932066AAC8006B42BC /* AlbumViewController.swift */,
@@ -293,7 +290,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				097D8DAC2067BCBD00BCF5CF /* CustomNavController.swift in Sources */,
 				095E0D942066AAC8006B42BC /* AlbumViewController.swift in Sources */,
 				09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */,
 				09C06EB220653DF900C34DC9 /* Extensions.swift in Sources */,
