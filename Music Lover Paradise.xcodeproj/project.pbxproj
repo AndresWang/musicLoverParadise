@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09541F6920656F1800A12F22 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09541F6820656F1800A12F22 /* LoadingCell.xib */; };
 		095E0D942066AAC8006B42BC /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095E0D932066AAC8006B42BC /* AlbumViewController.swift */; };
+		097D8D942067847300BCF5CF /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097D8D962067847300BCF5CF /* NothingFoundCell.xib */; };
+		097D8D972067847D00BCF5CF /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097D8D992067847D00BCF5CF /* LoadingCell.xib */; };
 		09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E782064CC1900C34DC9 /* AppDelegate.swift */; };
 		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
@@ -17,7 +18,6 @@
 		09C06E9C2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E9B2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift */; };
 		09C06EAA2065067A00C34DC9 /* JSONStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EA92065067A00C34DC9 /* JSONStructure.swift */; };
 		09C06EAE20650E7100C34DC9 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */; };
-		09C06EB0206510E600C34DC9 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09C06EAF206510E600C34DC9 /* NothingFoundCell.xib */; };
 		09C06EB220653DF900C34DC9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EB120653DF900C34DC9 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09541F6820656F1800A12F22 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		095E0D932066AAC8006B42BC /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		097D8D952067847300BCF5CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
+		097D8D982067847D00BCF5CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCell.xib; sourceTree = "<group>"; };
+		097D8D9A2067848C00BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		097D8D9B2067848C00BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/NothingFoundCell.strings; sourceTree = "<group>"; };
+		097D8D9C2067848C00BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LoadingCell.strings; sourceTree = "<group>"; };
 		09C06E752064CC1900C34DC9 /* Music Lover Paradise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lover Paradise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E782064CC1900C34DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +59,6 @@
 		09C06E9D2064CC1900C34DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09C06EA92065067A00C34DC9 /* JSONStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructure.swift; sourceTree = "<group>"; };
 		09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
-		09C06EAF206510E600C34DC9 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		09C06EB120653DF900C34DC9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,8 +117,8 @@
 				09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */,
 				095E0D932066AAC8006B42BC /* AlbumViewController.swift */,
 				09C06E7C2064CC1900C34DC9 /* Main.storyboard */,
-				09C06EAF206510E600C34DC9 /* NothingFoundCell.xib */,
-				09541F6820656F1800A12F22 /* LoadingCell.xib */,
+				097D8D962067847300BCF5CF /* NothingFoundCell.xib */,
+				097D8D992067847D00BCF5CF /* LoadingCell.xib */,
 				09C06E822064CC1900C34DC9 /* Assets.xcassets */,
 				09C06E872064CC1900C34DC9 /* Info.plist */,
 			);
@@ -248,8 +251,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				09C06E832064CC1900C34DC9 /* Assets.xcassets in Resources */,
-				09541F6920656F1800A12F22 /* LoadingCell.xib in Resources */,
-				09C06EB0206510E600C34DC9 /* NothingFoundCell.xib in Resources */,
+				097D8D972067847D00BCF5CF /* LoadingCell.xib in Resources */,
+				097D8D942067847300BCF5CF /* NothingFoundCell.xib in Resources */,
 				09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,10 +319,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		097D8D962067847300BCF5CF /* NothingFoundCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				097D8D952067847300BCF5CF /* Base */,
+				097D8D9B2067848C00BCF5CF /* de */,
+			);
+			name = NothingFoundCell.xib;
+			sourceTree = "<group>";
+		};
+		097D8D992067847D00BCF5CF /* LoadingCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				097D8D982067847D00BCF5CF /* Base */,
+				097D8D9C2067848C00BCF5CF /* de */,
+			);
+			name = LoadingCell.xib;
+			sourceTree = "<group>";
+		};
 		09C06E7C2064CC1900C34DC9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				09C06E7D2064CC1900C34DC9 /* Base */,
+				097D8D9A2067848C00BCF5CF /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -331,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -388,6 +411,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -1,0 +1,33 @@
+
+/* Class = "UILabel"; text = "17 songs, 1hr 53min"; ObjectID = "AKB-xO-YZq"; */
+"AKB-xO-YZq.text" = "17 songs, 1hr 53min";
+
+/* Class = "UILabel"; text = "2018 POP"; ObjectID = "CVl-xq-blf"; */
+"CVl-xq-blf.text" = "2018 POP";
+
+/* Class = "UILabel"; text = "Sony"; ObjectID = "Fce-HW-9Ix"; */
+"Fce-HW-9Ix.text" = "Sony";
+
+/* Class = "UILabel"; text = "Year"; ObjectID = "MQj-JR-YB7"; */
+"MQj-JR-YB7.text" = "Year";
+
+/* Class = "UIButton"; normalTitle = "Camila Cabello"; ObjectID = "SUe-sU-i2K"; */
+"SUe-sU-i2K.normalTitle" = "Camila Cabello";
+
+/* Class = "UILabel"; text = "Camila"; ObjectID = "Teq-9o-P5z"; */
+"Teq-9o-P5z.text" = "Camila";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "dfp-L8-YUS"; */
+"dfp-L8-YUS.text" = "1";
+
+/* Class = "UILabel"; text = "Track Name"; ObjectID = "eo1-8E-bIX"; */
+"eo1-8E-bIX.text" = "Track Name";
+
+/* Class = "UILabel"; text = "2:00"; ObjectID = "hjw-qs-UKl"; */
+"hjw-qs-UKl.text" = "2:00";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "q9N-Fy-gp0"; */
+"q9N-Fy-gp0.text" = "Name";
+
+/* Class = "UINavigationItem"; title = "Search Album"; ObjectID = "x0C-CV-mOL"; */
+"x0C-CV-mOL.title" = "Search Album";
