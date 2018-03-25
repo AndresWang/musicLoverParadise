@@ -14,6 +14,7 @@
 		097D8DA620678CC000BCF5CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 097D8DA820678CC000BCF5CF /* InfoPlist.strings */; };
 		097D8DAA2067B5BD00BCF5CF /* ArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097D8DA92067B5BD00BCF5CF /* ArtistViewController.swift */; };
 		097D8DAE2067F4C500BCF5CF /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097D8DAD2067F4C500BCF5CF /* APIWorker.swift */; };
+		097D8DB020681DA600BCF5CF /* UtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097D8DAF20681DA600BCF5CF /* UtilityTests.swift */; };
 		09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E782064CC1900C34DC9 /* AppDelegate.swift */; };
 		09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */; };
 		09C06E7E2064CC1900C34DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E7C2064CC1900C34DC9 /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		097D8DA720678CC000BCF5CF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		097D8DA92067B5BD00BCF5CF /* ArtistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewController.swift; sourceTree = "<group>"; };
 		097D8DAD2067F4C500BCF5CF /* APIWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
+		097D8DAF20681DA600BCF5CF /* UtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityTests.swift; sourceTree = "<group>"; };
 		09C06E752064CC1900C34DC9 /* Music Lover Paradise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Lover Paradise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E782064CC1900C34DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		09C06E8F2064CC1900C34DC9 /* Music Lover ParadiseTests */ = {
 			isa = PBXGroup;
 			children = (
+				097D8DAF20681DA600BCF5CF /* UtilityTests.swift */,
 				09C06E902064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift */,
 				09C06E922064CC1900C34DC9 /* Info.plist */,
 			);
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09C06E912064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift in Sources */,
+				097D8DB020681DA600BCF5CF /* UtilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

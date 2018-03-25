@@ -15,7 +15,7 @@ protocol APIWorker {
 struct DiscogsAPIWorker: APIWorker {
     func urlSessionDataTask(url: URL, prehandler: (() -> Void)?, dataHandler: @escaping (Data) -> Void, errorHandler: @escaping () -> Void) -> URLSessionDataTask {
         let session = URLSession.shared
-        let searchTask = session.dataTask(with: url) { data, response, error in
+        let dataTask = session.dataTask(with: url) { data, response, error in
             // Preparation (ie: stop activity indicator)
             DispatchQueue.main.async {prehandler?()}
             
@@ -31,7 +31,7 @@ struct DiscogsAPIWorker: APIWorker {
             // Handle errors
             DispatchQueue.main.async {errorHandler()}
         }
-        searchTask.resume()
-        return searchTask
+        dataTask.resume()
+        return dataTask
     }
 }

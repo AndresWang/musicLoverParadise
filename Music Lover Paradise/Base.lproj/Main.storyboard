@@ -14,7 +14,7 @@
         <!--Search View Controller-->
         <scene sceneID="XNV-De-cOU">
             <objects>
-                <tableViewController id="Ff3-jL-ez4" customClass="SearchViewController" customModule="Music_Lover_Paradise" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchViewController" id="Ff3-jL-ez4" customClass="SearchViewController" customModule="Music_Lover_Paradise" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bqm-K0-qdf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

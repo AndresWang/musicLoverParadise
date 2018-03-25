@@ -28,9 +28,21 @@ class Music_Lover_ParadiseUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testImportantUIFlow() {
+        let app = XCUIApplication()
+        sleep(3)
+        app.typeText("your song")
+        app.typeText("\n")
+        sleep(3)
+        app.tables/*@START_MENU_TOKEN@*/.cells.staticTexts["2017"]/*[[".cells.staticTexts[\"2017\"]",".staticTexts[\"2017\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
+        sleep(3)
+        let elementsQuery = app.scrollViews.otherElements
+        elementsQuery.buttons["Rita Ora"].tap()
+        sleep(3)
+        app.otherElements.element.children(matching: .scrollView).element.swipeUp()
+        let navigationBar = app.navigationBars.element
+        navigationBar.buttons.element.tap()
+        navigationBar.buttons.element.tap()
     }
     
 }

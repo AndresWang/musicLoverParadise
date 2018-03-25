@@ -41,6 +41,7 @@ class SearchViewController: UITableViewController, ActivityIndicatable {
         search.searchBar.placeholder = NSLocalizedString("Album Title", comment: "A placeholder to search album" )
         search.searchBar.tintColor = #colorLiteral(red: 0.9071379304, green: 0.2433879375, blue: 0.2114798129, alpha: 1)
         navigationItem.searchController = search
+        search.searchBar.accessibilityIdentifier = "mySearchBar"
         
         // Register Nibs
         let nothingFoundCellNib = UINib(nibName: CellIdentifiers.nothingFoundCell, bundle: nil)

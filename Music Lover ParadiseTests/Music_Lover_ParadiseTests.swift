@@ -10,27 +10,53 @@ import XCTest
 @testable import Music_Lover_Paradise
 
 class Music_Lover_ParadiseTests: XCTestCase {
+    var sut: SearchViewController!
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let searchView = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        sut = searchView
+        _ = searchView.view // To call viewDidLoad
     }
-    
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSearchControllerShouldExistAfterViewDidLoad() {
+        // given
+        // when
+        // then
+        XCTAssertNotNil(sut.navigationItem.searchController)
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testNavTitleShouldExistAfterViewDidLoad() {
+        // given
+        // when
+        // then
+        XCTAssertNotNil(sut.title)
     }
-    
+    func testTableViewShouldOnlyHas1CellWhenStatusIsLoading() {
+        // given
+        sut.isLoading = true
+        
+        // when
+        let numberOfRows = sut.tableView.numberOfRows(inSection: 0)
+        
+        // then
+        XCTAssertEqual(numberOfRows, 1)
+    }
+    func testSelectedIndexPathShouldExistAfterTableViewCellTapped() {
+        // given
+        let aResult = Result(title: "", year: nil, thumb: "", cover_image: "", genre: [], label: [], resource_url: "")
+        sut.searchResults = [aResult]
+        sut.isLoading = false
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        // when
+        let _ = sut.tableView(sut.tableView, willSelectRowAt: indexPath)
+        
+        // then
+        XCTAssertNotNil(sut.selectedIndexPath)
+    }
 }
