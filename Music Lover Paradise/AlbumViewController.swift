@@ -78,7 +78,7 @@ class AlbumViewController: UIViewController {
         artist.setTitle(album?.artists.first?.name, for: UIControlState())
         yearGenre.text = "\(albumYear) \(albumGenre)"
         tableView.reloadData()
-        let songsText = String(format: NSLocalizedString("%d Songs", comment: "Number of songs"), album?.tracklist.count ?? 0)
+        let songsText = String(format: NSLocalizedString("%li Songs", comment: "Number of songs"), album?.tracklist.count ?? 0)
         footerTrackTotal.text = "\(songsText), \(totalDuration())"
         footerLabel.text = "℗" + albumLabel
     }

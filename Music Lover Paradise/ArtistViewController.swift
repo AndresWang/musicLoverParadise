@@ -9,17 +9,17 @@
 import UIKit
 
 class ArtistViewController: UIViewController {
+    @IBOutlet weak private var photo: UIImageView!
+    @IBOutlet weak private var name: UILabel!
+    @IBOutlet weak private var profile: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
     }
-    
-
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
 
 
