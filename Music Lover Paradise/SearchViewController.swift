@@ -83,10 +83,7 @@ class SearchViewController: UITableViewController {
             }
             
             // Handle errors
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.showNetworkError()
-            }
+            DispatchQueue.main.async {self.showNetworkError()}
         }
         loadAlbumTask?.resume()
     }

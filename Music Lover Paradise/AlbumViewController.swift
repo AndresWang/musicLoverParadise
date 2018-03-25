@@ -43,6 +43,7 @@ class AlbumViewController: UIViewController {
     var downloadCoverTask: URLSessionDownloadTask?
     var loadArtistTask: URLSessionDataTask?
     var activityView: UIVisualEffectView?
+    var artistProfile: ArtistProfile?
     
     // IBActions
     @IBAction func artistPressed(_ sender: Any) {
@@ -76,7 +77,8 @@ class AlbumViewController: UIViewController {
             downloadCoverTask?.cancel()
             loadArtistTask?.cancel()
         } else /* Artist view */ {
-            
+            let artistView = segue.destination as! ArtistViewController
+            artistView.artistProfile = artistProfile
         }
     }
     
@@ -88,7 +90,7 @@ class AlbumViewController: UIViewController {
         tableView.reloadData()
         let songsText = String(format: NSLocalizedString("%li Songs", comment: "Number of songs"), album?.tracklist.count ?? 0)
         footerTrackTotal.text = "\(songsText), \(totalDuration())"
-        footerLabel.text = "℗" + albumLabel
+        footerLabel.text = "℗ " + albumLabel
     }
     private func totalDuration() -> String {
         guard let list = album?.tracklist else {print("Calculation Failure: No Track List!") ; return String.unknownText }
@@ -110,7 +112,7 @@ class AlbumViewController: UIViewController {
                 return // Task was cancelled
             } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 if let data = data {
-                    self.album = data.parseTo(jsonType: AlbumDetail.self)
+                    self.artistProfile = data.parseTo(jsonType: ArtistProfile.self)
                     DispatchQueue.main.async {self.performSegue(withIdentifier: "ArtistSegue", sender: self)}
                     return // Exit the closure
                 }
@@ -119,10 +121,7 @@ class AlbumViewController: UIViewController {
             }
             
             // Handle errors
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.showNetworkError()
-            }
+            DispatchQueue.main.async {self.showNetworkError()}
         }
         loadArtistTask?.resume()
     }

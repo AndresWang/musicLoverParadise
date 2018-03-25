@@ -38,12 +38,16 @@ struct ArtistProfile: Codable {
     var profile: String
     var releases_url: String
     var name: String
-    var images = [["":""]]
-    var urls: [String]
-    
+    var images: [ArtistImage]?
+    var urls: [String]?
     var primaryImage: String? {
-        return images.first?["uri"]
+        return images?.first?.uri
     }
+}
+struct ArtistImage: Codable {
+    var uri: String
+    var height: Int
+    var width: Int
 }
 
 
