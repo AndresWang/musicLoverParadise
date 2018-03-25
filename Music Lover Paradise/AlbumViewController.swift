@@ -39,6 +39,11 @@ class AlbumViewController: UIViewController {
     @IBOutlet weak private var footerTrackTotal: UILabel!
     @IBOutlet weak private var footerLabel: UILabel!
     
+    // IBActions
+    @IBAction func artistPressed(_ sender: Any) {
+        performSegue(withIdentifier: "ArtistSegue", sender: self)
+    }
+    
     // Self properties
     var downloadCoverTask: URLSessionDownloadTask?
     var loadArtistTask: URLSessionDataTask?
