@@ -105,20 +105,10 @@ extension URL {
 }
 
 extension Data {
-    func parseToResults() -> [Result] {
+    func parseTo<T: Codable>(jsonType: T.Type) -> T? {
         do {
             let decoder = JSONDecoder()
-            let result = try decoder.decode(ResultArray.self, from: self)
-            return result.results
-        } catch {
-            print("JSON Error: \(error)")
-            return []
-        }
-    }
-    func parseToAlbum() -> AlbumDetail? {
-        do {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(AlbumDetail.self, from: self)
+            let result = try decoder.decode(jsonType, from: self)
             return result
         } catch {
             print("JSON Error: \(error)")

@@ -13,7 +13,6 @@ class ArtistViewController: UIViewController {
     @IBOutlet weak private var name: UILabel!
     @IBOutlet weak private var profile: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,6 +20,4 @@ class ArtistViewController: UIViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
-
-
 }

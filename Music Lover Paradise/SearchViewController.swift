@@ -72,7 +72,7 @@ class SearchViewController: UITableViewController {
                 return // Task was cancelled
             } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 if let data = data {
-                    self.album = data.parseToAlbum()
+                    self.album = data.parseTo(jsonType: AlbumDetail.self)
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "AlbumSegue", sender: self)
                     }
@@ -115,7 +115,7 @@ extension SearchViewController: UISearchBarDelegate {
                 return // Search was cancelled
             } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 if let data = data {
-                    self.searchResults = data.parseToResults()
+                    self.searchResults = data.parseTo(jsonType: ResultArray.self)?.results ?? []
                     self.searchResults.sort(by: >)
                     DispatchQueue.main.async {
                         self.isLoading = false

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct ResultArray: Codable {
     var results: [Result]!
@@ -32,6 +33,17 @@ struct Artist: Codable {
 struct Track: Codable {
     var duration: String
     var title: String
+}
+struct ArtistProfile: Codable {
+    var profile: String
+    var releases_url: String
+    var name: String
+    var images = [["":""]]
+    var urls: [String]
+    
+    var primaryImage: String? {
+        return images.first?["uri"]
+    }
 }
 
 
