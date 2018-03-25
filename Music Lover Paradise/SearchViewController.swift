@@ -48,7 +48,10 @@ class SearchViewController: UITableViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if searchResults.isEmpty {navigationItem.searchController?.isActive = true}
+        guard searchResults.isEmpty else {return}
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.navigationItem.searchController?.isActive = true
+        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = selectedIndexPath, let albumView = segue.destination as? AlbumViewController, segue.identifier == "AlbumSegue" else {return}
