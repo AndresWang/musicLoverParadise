@@ -25,11 +25,30 @@ struct Music {
         var genre: String
         var label: String
         var title: String
-        var artists: [JSON.Artist]!
-        var tracklist: [JSON.Track]!
+        var artists: [Artist]!
+        var tracklist: [Track]!
     }
-    struct Track: Codable {
+    struct Artist {
+        var name: String
+        var resource_url: String
+    }
+    struct Track {
         var duration: String
         var title: String
+    }
+    struct ArtistProfile {
+        var profile: String
+        var releases_url: String
+        var name: String
+        var images: [ArtistImage]?
+        var urls: [String]?
+        var primaryImage: String? {
+            return images?.first?.uri
+        }
+    }
+    struct ArtistImage {
+        var uri: String
+        var height: Int
+        var width: Int
     }
 }

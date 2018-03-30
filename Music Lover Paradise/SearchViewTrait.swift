@@ -58,8 +58,8 @@ extension SearchViewTrait where Self: UITableViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {self.navigationItem.searchController?.isActive = true}
     }
     func searchViewPrepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let albumView = segue.destination as? AlbumViewController, segue.identifier == "AlbumSegue" else {return}
-        albumView.receiveDataFromOtherViewController(data: interactor.album)
+        guard let albumView = segue.destination as? AlbumViewController, let album = interactor.album, segue.identifier == "AlbumSegue" else {return}
+        albumView.receiveDataFromOtherViewController(data: album)
     }
     
     // MARK: - UITableView DataSource & Delegate

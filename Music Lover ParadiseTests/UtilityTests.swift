@@ -41,12 +41,12 @@ class UtilityTests: XCTestCase {
         // given
         let resourceURL = "https://api.discogs.com/artists/3518183"
         let url = URL.discogs(resourceURL: resourceURL)
-        var result: ArtistProfile?
+        var result: JSON.ArtistProfile?
         
         // when
         do {
             let data = try Data(contentsOf: url)
-            result = data.parseTo(jsonType: ArtistProfile.self)
+            result = data.parseTo(jsonType: JSON.ArtistProfile.self)
         } catch {
             print("Download Error: \(error.localizedDescription)")
         }

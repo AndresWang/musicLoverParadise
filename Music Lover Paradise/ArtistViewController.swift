@@ -10,7 +10,7 @@ import UIKit
 
 class ArtistViewController: UIViewController {
     // Segue properties
-    var artistProfile: ArtistProfile?
+    var artistProfile: Music.ArtistProfile?
     
     // IBOutlets
     @IBOutlet weak private var scrollView: UIScrollView!

@@ -9,7 +9,8 @@
 import UIKit
 
 class AlbumViewController: UIViewController, ActivityIndicatable {
-    let interactor: AlbumInteractorDelegate = AlbumInteractor()
+    private let interactor: AlbumInteractorDelegate = AlbumInteractor()
+    private var downloadCoverTask: URLSessionDownloadTask?
     var activityView: UIVisualEffectView?
     
     // IBOutlets
@@ -19,16 +20,15 @@ class AlbumViewController: UIViewController, ActivityIndicatable {
     @IBOutlet weak private var artist: UIButton!
     @IBOutlet weak private var yearGenre: UILabel!
     @IBOutlet weak private var tableView: UITableView!
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak private var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak private var footerTrackTotal: UILabel!
     @IBOutlet weak private var footerLabel: UILabel!
     
     // IBActions
     @IBAction func artistPressed(_ sender: Any) {
-        loadArtistTask?.cancel()
         activityView = view.showActivityPanel(message: NSLocalizedString("Loading...", comment: "Network working"))
-        if let artistURL = interactor.album?.artists.first?.resource_url {
-            loadArtistTask = api?.urlSessionDataTask(url: URL.discogs(resourceURL: artistURL), prehandler: stopActivityIndicator, dataHandler: loadArtistDataHandler, errorHandler: {self.stopActivityIndicator() ; self.showNetworkError()})
+        if let artistURL = interactor.album.artists.first?.resource_url {
+            interactor.loadArtist(with: artistURL, prehandler: stopActivityIndicator, dataHandler: loadArtistDataHandler(_:), errorHandler: loadArtistErrorHandler)
         } else {
             stopActivityIndicator()
             showNetworkError()
@@ -40,9 +40,9 @@ class AlbumViewController: UIViewController, ActivityIndicatable {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         tableView.rowHeight = 44
-        tableViewHeight.constant = CGFloat(44 * (interactor.album?.tracklist.count ?? 0))
+        tableViewHeight.constant = CGFloat(44 * (interactor.album.tracklist.count))
         imageCover.rounded()
-        if let coverURL = URL(string: interactor.album?.coverImageURL) {downloadCoverTask = imageCover.loadImage(url: coverURL)}
+        if let coverURL = URL(string: interactor.album.coverImageURL) {downloadCoverTask = imageCover.loadImage(url: coverURL)}
         updateUI()
     }
     override func viewDidLayoutSubviews() {
@@ -54,30 +54,30 @@ class AlbumViewController: UIViewController, ActivityIndicatable {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is SearchViewController {
             downloadCoverTask?.cancel()
-            loadArtistTask?.cancel()
+            interactor.cancelLoadArtistTask()
         } else /* Artist view */ {
             let artistView = segue.destination as! ArtistViewController
-            artistView.artistProfile = artistProfile
+            artistView.artistProfile = interactor.artistProfile
         }
     }
     
     // MARK: Boundary Methods
-    func receiveDataFromOtherViewController(data: Music.Album?) {
+    func receiveDataFromOtherViewController(data: Music.Album) {
         interactor.setAlbum(data)
     }
     
     // MARK: Private Methods
     private func updateUI() {
-        titleLabel.text = album?.title
-        artist.setTitle(album?.artists.first?.name, for: UIControlState())
-        yearGenre.text = "\(albumYear) \(albumGenre)"
-        tableView.reloadData()
-        let songsText = String(format: NSLocalizedString("%ld Songs", comment: "Number of songs"), album?.tracklist.count ?? 0)
+        titleLabel.text = interactor.album.title
+        artist.setTitle(interactor.album.artists.first?.name, for: UIControlState())
+        yearGenre.text = "\(interactor.album.year) \(interactor.album.genre)"
+        let songsText = String(format: NSLocalizedString("%ld Songs", comment: "Number of songs"), interactor.album.tracklist.count)
         footerTrackTotal.text = "\(songsText), \(totalDuration())"
-        footerLabel.text = "℗ " + albumLabel
+        footerLabel.text = "℗ " + interactor.album.label
+        tableView.reloadData()
     }
     private func totalDuration() -> String {
-        guard let list = album?.tracklist else {print("Calculation Failure: No Track List!") ; return String.unknownText }
+        guard let list = interactor.album.tracklist else {print("Calculation Failure: No Track List!") ; return String.unknownText }
         var duration: TimeInterval = 0
         for track in list {
             duration += track.duration.parseDuration()
@@ -85,20 +85,24 @@ class AlbumViewController: UIViewController, ActivityIndicatable {
         return duration.stringFrom(interval: duration)
     }
     private func loadArtistDataHandler(_ data: Data) {
-        artistProfile = data.parseTo(jsonType: ArtistProfile.self)
+        interactor.processArtistData(data: data)
         DispatchQueue.main.async {self.performSegue(withIdentifier: "ArtistSegue", sender: self)}
+    }
+    private func loadArtistErrorHandler() {
+        stopActivityIndicator()
+        showNetworkError()
     }
 }
 
 // MARK:- UITableViewDataSource, UITableViewDelegate
 extension AlbumViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return album?.tracklist.count ?? 0
+        return interactor.album?.tracklist.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackCell
         
-        guard let hasTrackList = album?.tracklist else {return cell}
+        guard let hasTrackList = interactor.album?.tracklist else {return cell}
         let row = indexPath.row
         let track = hasTrackList[row]
         cell.configure(with: track, row: row + 1)

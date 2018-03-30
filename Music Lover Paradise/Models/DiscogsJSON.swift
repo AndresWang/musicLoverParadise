@@ -32,16 +32,24 @@ struct JSON {
         var tracklist: [Track]!
         
         func toMusic(coverImageURL: String, year: String, genre: String, label: String) -> Music.Album {
-            return Music.Album(coverImageURL: coverImageURL, year: year, genre: genre, label: label, title: title, artists: artists, tracklist: tracklist)
+            return Music.Album(coverImageURL: coverImageURL, year: year, genre: genre, label: label, title: title, artists: artists.map{$0.toMusic()}, tracklist: tracklist.map{$0.toMusic()})
         }
     }
     struct Artist: Codable {
         var name: String
         var resource_url: String
+        
+        func toMusic() -> Music.Artist {
+            return Music.Artist(name: name, resource_url: resource_url)
+        }
     }
     struct Track: Codable {
         var duration: String
         var title: String
+        
+        func toMusic() -> Music.Track {
+            return Music.Track(duration: duration, title: title)
+        }
     }
     struct ArtistProfile: Codable {
         var profile: String
@@ -52,11 +60,19 @@ struct JSON {
         var primaryImage: String? {
             return images?.first?.uri
         }
+        
+        func toMusic() -> Music.ArtistProfile {
+            return Music.ArtistProfile(profile: profile, releases_url: releases_url, name: name, images: images?.map{$0.toMusic()}, urls: urls)
+        }
     }
     struct ArtistImage: Codable {
         var uri: String
         var height: Int
         var width: Int
+        
+        func toMusic() -> Music.ArtistImage {
+            return Music.ArtistImage(uri: uri, height: height, width: width)
+        }
     }
 }
 

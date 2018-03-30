@@ -46,17 +46,4 @@ class Music_Lover_ParadiseTests: XCTestCase {
         // then
         XCTAssertEqual(numberOfRows, 1)
     }
-    func testSelectedIndexPathShouldExistAfterTableViewCellTapped() {
-        // given
-        let aResult = Result(title: "", year: nil, thumb: "", cover_image: "", genre: [], label: [], resource_url: "")
-        sut.searchResults = [aResult]
-        sut.isLoading = false
-        let indexPath = IndexPath(row: 0, section: 0)
-        
-        // when
-        let _ = sut.tableView(sut.tableView, willSelectRowAt: indexPath)
-        
-        // then
-        XCTAssertNotNil(sut.selectedIndexPath)
-    }
 }
