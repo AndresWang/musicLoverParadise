@@ -9,12 +9,6 @@
 import Foundation
 import UIKit
 
-func > (lhs: Result, rhs: Result) -> Bool {
-    let lhsYear = Int(lhs.year ?? "0") ?? 0
-    let rhsYear = Int(rhs.year ?? "0") ?? 0
-    return lhsYear > rhsYear
-}
-
 extension UIViewController {
     func showNetworkError() {
         let alert = UIAlertController(title: NSLocalizedString("Whoops...", comment: "Network error title"), message: NSLocalizedString("There was an error accessing Discogs database. Please try again", comment: "Network error message"), preferredStyle: .alert)

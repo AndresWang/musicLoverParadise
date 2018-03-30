@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol APIWorker {
+protocol APIWorkerDelegate {
     func urlSessionDataTask(url: URL, prehandler: (() -> Void)?, dataHandler: @escaping (Data) -> Void, errorHandler: @escaping () -> Void) -> URLSessionDataTask
 }
 
-struct DiscogsAPIWorker: APIWorker {
+struct DiscogsAPIWorker: APIWorkerDelegate {
     func urlSessionDataTask(url: URL, prehandler: (() -> Void)?, dataHandler: @escaping (Data) -> Void, errorHandler: @escaping () -> Void) -> URLSessionDataTask {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: url) { data, response, error in

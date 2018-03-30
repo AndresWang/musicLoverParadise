@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09558CD1206DFCA2009EC5D1 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09558CD0206DFCA2009EC5D1 /* SearchInteractor.swift */; };
+		09558CD3206DFDA1009EC5D1 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09558CD2206DFDA1009EC5D1 /* Music.swift */; };
+		09558CD6206E0EA7009EC5D1 /* AlbumInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09558CD5206E0EA7009EC5D1 /* AlbumInteractor.swift */; };
 		095E0D942066AAC8006B42BC /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095E0D932066AAC8006B42BC /* AlbumViewController.swift */; };
 		097D8D942067847300BCF5CF /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097D8D962067847300BCF5CF /* NothingFoundCell.xib */; };
 		097D8D972067847D00BCF5CF /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097D8D992067847D00BCF5CF /* LoadingCell.xib */; };
@@ -21,7 +24,7 @@
 		09C06E832064CC1900C34DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09C06E822064CC1900C34DC9 /* Assets.xcassets */; };
 		09C06E912064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E902064CC1900C34DC9 /* Music_Lover_ParadiseTests.swift */; };
 		09C06E9C2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06E9B2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift */; };
-		09C06EAA2065067A00C34DC9 /* JSONStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EA92065067A00C34DC9 /* JSONStructure.swift */; };
+		09C06EAA2065067A00C34DC9 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EA92065067A00C34DC9 /* JSON.swift */; };
 		09C06EAE20650E7100C34DC9 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */; };
 		09C06EB220653DF900C34DC9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C06EB120653DF900C34DC9 /* Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09558CD0206DFCA2009EC5D1 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		09558CD2206DFDA1009EC5D1 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		09558CD5206E0EA7009EC5D1 /* AlbumInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInteractor.swift; sourceTree = "<group>"; };
 		095E0D932066AAC8006B42BC /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		097D8D952067847300BCF5CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
 		097D8D982067847D00BCF5CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCell.xib; sourceTree = "<group>"; };
@@ -67,7 +73,7 @@
 		09C06E972064CC1900C34DC9 /* Music Lover ParadiseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Music Lover ParadiseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C06E9B2064CC1900C34DC9 /* Music_Lover_ParadiseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_Lover_ParadiseUITests.swift; sourceTree = "<group>"; };
 		09C06E9D2064CC1900C34DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09C06EA92065067A00C34DC9 /* JSONStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructure.swift; sourceTree = "<group>"; };
+		09C06EA92065067A00C34DC9 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		09C06EB120653DF900C34DC9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +103,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09558CCF206DFB03009EC5D1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				097D8DA820678CC000BCF5CF /* InfoPlist.strings */,
+				097D8DA320678CBF00BCF5CF /* Localizable.strings */,
+				09C06E782064CC1900C34DC9 /* AppDelegate.swift */,
+				09C06EB120653DF900C34DC9 /* Extensions.swift */,
+				09C06E822064CC1900C34DC9 /* Assets.xcassets */,
+				09C06E872064CC1900C34DC9 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		09558CD4206DFDB5009EC5D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				09C06EA92065067A00C34DC9 /* JSON.swift */,
+				09558CD2206DFDA1009EC5D1 /* Music.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		09C06E6C2064CC1900C34DC9 = {
 			isa = PBXGroup;
 			children = (
@@ -120,21 +148,18 @@
 		09C06E772064CC1900C34DC9 /* Music Lover Paradise */ = {
 			isa = PBXGroup;
 			children = (
-				097D8DA820678CC000BCF5CF /* InfoPlist.strings */,
-				097D8DA320678CBF00BCF5CF /* Localizable.strings */,
-				09C06E782064CC1900C34DC9 /* AppDelegate.swift */,
-				09C06EB120653DF900C34DC9 /* Extensions.swift */,
+				09558CD4206DFDB5009EC5D1 /* Models */,
 				097D8DAD2067F4C500BCF5CF /* APIWorker.swift */,
-				09C06EA92065067A00C34DC9 /* JSONStructure.swift */,
+				09558CD0206DFCA2009EC5D1 /* SearchInteractor.swift */,
 				09C06E7A2064CC1900C34DC9 /* SearchViewController.swift */,
 				09C06EAD20650E7100C34DC9 /* SearchResultCell.swift */,
+				09558CD5206E0EA7009EC5D1 /* AlbumInteractor.swift */,
 				095E0D932066AAC8006B42BC /* AlbumViewController.swift */,
 				097D8DA92067B5BD00BCF5CF /* ArtistViewController.swift */,
 				09C06E7C2064CC1900C34DC9 /* Main.storyboard */,
 				097D8D962067847300BCF5CF /* NothingFoundCell.xib */,
 				097D8D992067847D00BCF5CF /* LoadingCell.xib */,
-				09C06E822064CC1900C34DC9 /* Assets.xcassets */,
-				09C06E872064CC1900C34DC9 /* Info.plist */,
+				09558CCF206DFB03009EC5D1 /* Resources */,
 			);
 			path = "Music Lover Paradise";
 			sourceTree = "<group>";
@@ -299,9 +324,12 @@
 				095E0D942066AAC8006B42BC /* AlbumViewController.swift in Sources */,
 				09C06E7B2064CC1900C34DC9 /* SearchViewController.swift in Sources */,
 				09C06EB220653DF900C34DC9 /* Extensions.swift in Sources */,
+				09558CD1206DFCA2009EC5D1 /* SearchInteractor.swift in Sources */,
 				097D8DAA2067B5BD00BCF5CF /* ArtistViewController.swift in Sources */,
 				09C06E792064CC1900C34DC9 /* AppDelegate.swift in Sources */,
-				09C06EAA2065067A00C34DC9 /* JSONStructure.swift in Sources */,
+				09558CD6206E0EA7009EC5D1 /* AlbumInteractor.swift in Sources */,
+				09C06EAA2065067A00C34DC9 /* JSON.swift in Sources */,
+				09558CD3206DFDA1009EC5D1 /* Music.swift in Sources */,
 				097D8DAE2067F4C500BCF5CF /* APIWorker.swift in Sources */,
 				09C06EAE20650E7100C34DC9 /* SearchResultCell.swift in Sources */,
 			);

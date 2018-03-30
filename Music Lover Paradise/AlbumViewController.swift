@@ -21,13 +21,7 @@ class TrackCell: UITableViewCell {
 }
 
 class AlbumViewController: UIViewController, ActivityIndicatable {
-    // Segue properties
-    var coverImageURL = ""
-    var albumYear = ""
-    var albumGenre = ""
-    var albumLabel = ""
-    var album: AlbumDetail?
-    var api: APIWorker?
+    let interactor: AlbumInteractorDelegate = AlbumInteractor()
     
     // IBOutlets
     @IBOutlet weak private var scrollView: UIScrollView!
@@ -50,7 +44,7 @@ class AlbumViewController: UIViewController, ActivityIndicatable {
     @IBAction func artistPressed(_ sender: Any) {
         loadArtistTask?.cancel()
         activityView = view.showActivityPanel(message: NSLocalizedString("Loading...", comment: "Network working"))
-        if let artistURL = album?.artists.first?.resource_url {
+        if let artistURL = interactor.album?.artists.first?.resource_url {
             loadArtistTask = api?.urlSessionDataTask(url: URL.discogs(resourceURL: artistURL), prehandler: stopActivityIndicator, dataHandler: loadArtistDataHandler, errorHandler: {self.stopActivityIndicator() ; self.showNetworkError()})
         } else {
             stopActivityIndicator()

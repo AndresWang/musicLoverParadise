@@ -9,16 +9,13 @@
 import UIKit
 
 class SearchViewController: UITableViewController, ActivityIndicatable {
-    var searchResults = [Result]()
+    let interactor: SearchInteractorDelegate = SearchInteractor()
+    var searchTask: URLSessionDataTask?
     var hasSearched = false
     var isLoading = false
-    var searchTask: URLSessionDataTask?
     var loadAlbumTask: URLSessionDataTask?
-    var selectedIndexPath: IndexPath?
-    var album: AlbumDetail?
     var activityView: UIVisualEffectView?
-    let api: APIWorker = DiscogsAPIWorker()
-    
+    var selectedIndexPath: IndexPath?
     
     struct CellIdentifiers {
         static let searchResultCell = "SearchResultCell"
@@ -51,24 +48,37 @@ class SearchViewController: UITableViewController, ActivityIndicatable {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard searchResults.isEmpty else {return}
+        guard interactor.searchResults.isEmpty else {return}
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {self.navigationItem.searchController?.isActive = true}
     }
+    
+    // Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = selectedIndexPath, let albumView = segue.destination as? AlbumViewController, segue.identifier == "AlbumSegue" else {return}
-        let selectedResult = searchResults[indexPath.row]
-        albumView.coverImageURL = selectedResult.cover_image
-        albumView.albumYear = selectedResult.year ?? String.unknownText
-        albumView.albumGenre = selectedResult.genre.first ?? String.unknownText
-        albumView.albumLabel = selectedResult.label.joined(separator: ", ")
-        albumView.album = album
-        albumView.api = api
+        guard let albumView = segue.destination as? AlbumViewController, segue.identifier == "AlbumSegue" else {return}
+        albumView.album = interactor.album
+    }
+}
+
+// MARK:- UISearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text, !text.isEmpty else {print("No String Entered");searchBar.resignFirstResponder();return}
+        
+        // Cancel previous task
+        searchTask?.cancel()
+        
+        // Start search task
+        searchBar.resignFirstResponder()
+        tableView.contentOffset = .zero
+        isLoading = true
+        tableView.reloadData()
+        hasSearched = true
+        searchTask = interactor.search(with: text, prehandler: nil, dataHandler: searchDataHandler, errorHandler: searchErrorHandler)
     }
     
-    // MARK: Private Methods
+    // Private Methods
     private func searchDataHandler(data: Data) {
-        searchResults = data.parseTo(jsonType: ResultArray.self)?.results ?? []
-        searchResults.sort(by: >)
+        interactor.processSearchData(data: data)
         DispatchQueue.main.async {
             self.isLoading = false
             self.tableView.reloadData()
@@ -81,35 +91,6 @@ class SearchViewController: UITableViewController, ActivityIndicatable {
         tableView.reloadData()
         navigationItem.searchController?.isActive = false
         showNetworkError()
-    }
-    private func loadAlbumDataHandler(data: Data) {
-        album = data.parseTo(jsonType: AlbumDetail.self)
-        DispatchQueue.main.async {self.performSegue(withIdentifier: "AlbumSegue", sender: self)}
-    }
-    private func loadAlbumErrorHandler() {
-        stopActivityIndicator()
-        showNetworkError()
-    }
-}
-
-// MARK:- UISearchBarDelegate
-extension SearchViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text, !text.isEmpty else {print("No String Entered");searchBar.resignFirstResponder();return}
-        
-        // Cancel previous task
-        searchTask?.cancel()
-        
-        // Preparation
-        searchBar.resignFirstResponder()
-        tableView.contentOffset = .zero
-        isLoading = true
-        tableView.reloadData()
-        hasSearched = true
-        searchResults = []
-        
-        // Call API
-        searchTask = api.urlSessionDataTask(url: URL.discogs(searchText: text), prehandler: nil, dataHandler: searchDataHandler, errorHandler: searchErrorHandler)
     }
 }
 
@@ -127,10 +108,10 @@ extension SearchViewController {
             return 1
         } else if !hasSearched {
             return 0
-        } else if searchResults.count == 0 {
+        } else if interactor.searchResults.count == 0 {
             return 1
         } else {
-            return searchResults.count
+            return interactor.searchResults.count
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -139,17 +120,17 @@ extension SearchViewController {
             let spinner = loadingCell.viewWithTag(100) as! UIActivityIndicatorView
             spinner.startAnimating()
             return loadingCell
-        } else if searchResults.count == 0 {
+        } else if interactor.searchResults.count == 0 {
             let nothingFoundCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.nothingFoundCell, for: indexPath)
             return nothingFoundCell
         } else {
             let searchResultCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
-            searchResultCell.configure(for: searchResults[indexPath.row])
+            searchResultCell.configure(for: interactor.searchResults[indexPath.row])
             return searchResultCell
         }
     }
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if searchResults.count == 0 || isLoading {
+        if interactor.searchResults.count == 0 || isLoading {
             selectedIndexPath = nil
             return nil
         } else {
@@ -158,12 +139,22 @@ extension SearchViewController {
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let indexPath = selectedIndexPath else {return}
         activityView = view.showActivityPanel(message: NSLocalizedString("Loading...", comment: "Network working"))
-        let urlString = searchResults[indexPath.row].resource_url
-        let url = URL.discogs(resourceURL: urlString)
         searchTask?.cancel()
         loadAlbumTask?.cancel()
-        loadAlbumTask = api.urlSessionDataTask(url: url, prehandler: stopActivityIndicator, dataHandler: loadAlbumDataHandler, errorHandler: loadAlbumErrorHandler)
+        loadAlbumTask = interactor.loadAlbum(at: indexPath, prehandler: stopActivityIndicator, dataHandler: loadAlbumDataHandler, errorHandler: loadAlbumErrorHandler)
+    }
+    
+    // Private Methods
+    private func loadAlbumDataHandler(data: Data) {
+        guard let indexPath = selectedIndexPath else {return}
+        interactor.processAlbumData(at: indexPath, data: data)
+        DispatchQueue.main.async {self.performSegue(withIdentifier: "AlbumSegue", sender: self)}
+    }
+    private func loadAlbumErrorHandler() {
+        stopActivityIndicator()
+        showNetworkError()
     }
 }
 

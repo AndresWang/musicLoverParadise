@@ -29,7 +29,7 @@ class SearchResultCell: UITableViewCell {
     }
     
     // MARK:- Boundary Methods
-    func configure(for result: Result) {
+    func configure(for result: Music.Result) {
         titleLabel.text = result.title
         yearLabel.text = result.year ?? String.unknownText
         artworkImageView.image = #imageLiteral(resourceName: "Placeholder")
