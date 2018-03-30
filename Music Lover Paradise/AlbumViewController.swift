@@ -8,20 +8,9 @@
 
 import UIKit
 
-class TrackCell: UITableViewCell {
-    @IBOutlet weak private var position: UILabel!
-    @IBOutlet weak private var name: UILabel!
-    @IBOutlet weak private var duration: UILabel!
-    
-    func configure(with track: Track, row: Int) {
-        position.text = "\(row)"
-        name.text = track.title
-        duration.text = track.duration
-    }
-}
-
 class AlbumViewController: UIViewController, ActivityIndicatable {
     let interactor: AlbumInteractorDelegate = AlbumInteractor()
+    var activityView: UIVisualEffectView?
     
     // IBOutlets
     @IBOutlet weak private var scrollView: UIScrollView!
@@ -33,12 +22,6 @@ class AlbumViewController: UIViewController, ActivityIndicatable {
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak private var footerTrackTotal: UILabel!
     @IBOutlet weak private var footerLabel: UILabel!
-    
-    // Self properties
-    var activityView: UIVisualEffectView?
-    private var downloadCoverTask: URLSessionDownloadTask?
-    private var loadArtistTask: URLSessionDataTask?
-    private var artistProfile: ArtistProfile?
     
     // IBActions
     @IBAction func artistPressed(_ sender: Any) {
@@ -57,9 +40,9 @@ class AlbumViewController: UIViewController, ActivityIndicatable {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         tableView.rowHeight = 44
-        tableViewHeight.constant = CGFloat(44 * (album?.tracklist.count ?? 0))
+        tableViewHeight.constant = CGFloat(44 * (interactor.album?.tracklist.count ?? 0))
         imageCover.rounded()
-        if let coverURL = URL(string: coverImageURL) {downloadCoverTask = imageCover.loadImage(url: coverURL)}
+        if let coverURL = URL(string: interactor.album?.coverImageURL) {downloadCoverTask = imageCover.loadImage(url: coverURL)}
         updateUI()
     }
     override func viewDidLayoutSubviews() {
@@ -76,6 +59,11 @@ class AlbumViewController: UIViewController, ActivityIndicatable {
             let artistView = segue.destination as! ArtistViewController
             artistView.artistProfile = artistProfile
         }
+    }
+    
+    // MARK: Boundary Methods
+    func receiveDataFromOtherViewController(data: Music.Album?) {
+        interactor.setAlbum(data)
     }
     
     // MARK: Private Methods

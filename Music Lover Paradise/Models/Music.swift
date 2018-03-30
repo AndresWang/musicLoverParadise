@@ -8,6 +8,7 @@
 
 import Foundation
 
+// ATTENTION : This is the model object for our app, separated form json's object in case the json structure will change in the future (Or change of API).
 struct Music {
     struct Result {
         var title: String
@@ -26,5 +27,9 @@ struct Music {
         var title: String
         var artists: [JSON.Artist]!
         var tracklist: [JSON.Track]!
+    }
+    struct Track: Codable {
+        var duration: String
+        var title: String
     }
 }

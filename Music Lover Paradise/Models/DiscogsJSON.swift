@@ -1,5 +1,5 @@
 //
-//  JSON.swift
+//  DiscogsJSON.swift
 //  Music Lover Paradise
 //
 //  Created by Andres Wang on 23/03/2018.
