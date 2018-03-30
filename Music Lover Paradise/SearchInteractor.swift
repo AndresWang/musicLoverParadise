@@ -8,7 +8,7 @@
 
 import Foundation
 
-// ATTENTION : This is the domain object for SearchViewTrait, it is like a manager for all data manipulations, normally it will ask database or apiWorker for data and report the result to its viewController.
+// ATTENTION : This is the domain object for SearchViewTrait, it is like a manager for all data manipulations, normally it will ask database or apiWorker for data and report the result to its viewController. And we can unite test this class if we want.
 protocol SearchInteractorDelegate {
     var searchResults: [Music.Result] {get}
     var album: Music.Album? {get}
